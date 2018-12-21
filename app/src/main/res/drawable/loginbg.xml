@@ -7,11 +7,11 @@
 
         android:bottom="300dp"
         android:left="-100dp"
-        android:right="-150dp">
+        android:right="-200dp">
         <rotate
             android:fromDegrees="-20"
             android:pivotX="0%"
-            android:pivotY="70%">
+            android:pivotY="90%">
             <shape
                 android:shape="rectangle">
               <gradient android:startColor="@color/yellow"
