@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -11,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="80dp"
-        android:layout_weight=".75"
+        android:layout_weight=".70"
         android:orientation="vertical">
 
         <Button
@@ -20,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="160dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/register" />
 
         <TextView
@@ -29,9 +30,10 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="150dp"
             android:layout_marginTop="5dp"
-            android:layout_marginRight="50dp"
+            android:layout_marginRight="10dp"
             android:gravity="center"
             android:text="Register your Business"
+            android:textColor="@android:color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -40,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_weight=".50"
+        android:layout_weight=".40"
         android:orientation="vertical">
 
         <ImageView
@@ -49,8 +51,8 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_weight=".50"
-            app:srcCompat="@drawable/logomaratha" />
+            android:layout_weight=".40"
+            app:srcCompat="@drawable/logomaratha3" />
 
     </LinearLayout>
 
@@ -68,7 +70,7 @@
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="मराठा व्यावसायिक उद्योजक"
-            android:textColor="@color/yellow"
+            android:textColor="@color/orange"
             android:textSize="30sp"
             android:textStyle="bold"
             app:fontFamily="@font/aclonica" />

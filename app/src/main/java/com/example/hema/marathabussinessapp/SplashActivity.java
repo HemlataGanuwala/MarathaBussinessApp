@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class SplashActivity extends AppCompatActivity {
-private  static  int spashouttime=5000;
+private  static int spashouttime=5000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +20,5 @@ private  static  int spashouttime=5000;
                 finish();
             }
         },spashouttime);
-
-
     }
 }

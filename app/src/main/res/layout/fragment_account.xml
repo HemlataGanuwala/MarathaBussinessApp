@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:orientation="vertical"
     tools:context=".AccountFragment">
 
@@ -16,17 +17,18 @@
         android:layout_marginTop="5dp"
         android:gravity="center"
         android:text="Account Details"
-        android:textColor="@color/orange"
+        android:textColor="@android:color/white"
         android:textSize="22sp"
         android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight=".20"
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/editText6"
+            android:id="@+id/etaccountholdername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -36,10 +38,11 @@
             android:drawablePadding="5dp"
             android:ems="10"
             android:hint="Enter Account Holder Name"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textColor="@android:color/white" />
 
         <EditText
-            android:id="@+id/editText7"
+            android:id="@+id/etbankname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -49,10 +52,11 @@
             android:drawablePadding="5dp"
             android:ems="10"
             android:hint="Enter bank name."
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textColor="@android:color/white" />
 
         <EditText
-            android:id="@+id/editText8"
+            android:id="@+id/etbranchname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -65,7 +69,7 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editText9"
+            android:id="@+id/etaccountno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -78,7 +82,7 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editText10"
+            android:id="@+id/etifscno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -89,5 +93,60 @@
             android:ems="10"
             android:hint="Enter IFSC Code"
             android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/etmicrno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:drawableLeft="@drawable/accountno"
+            android:drawablePadding="5dp"
+            android:ems="10"
+            android:hint="Enter MICR  no"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Payment Options"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etpaymentoption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/button17"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/btnlogin"
+            android:text="Registration"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 </LinearLayout>

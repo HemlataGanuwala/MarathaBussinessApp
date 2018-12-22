@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".RegistrationActivity">
+    tools:context="@drawable/background">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="REGISTRATION"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/orange"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -46,7 +46,8 @@
                         android:layout_marginTop="10dp"
                         android:ems="10"
                         android:hint="Enter your name"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"
+                        android:textColorLink="@android:color/black" />
 
                     <Spinner
                         android:id="@+id/spiOccupation"
@@ -57,31 +58,6 @@
                         android:background="@android:drawable/edit_text"
                         android:scrollbarSize="18dp" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/textView4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:text="Document"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
-                        <Button
-                            android:id="@+id/btnbrowse"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_weight="1"
-                            android:text="Any document upload" />
-                    </LinearLayout>
-
                     <EditText
                         android:id="@+id/etaddress"
                         android:layout_width="match_parent"
@@ -89,7 +65,8 @@
                         android:layout_marginTop="10dp"
                         android:ems="10"
                         android:hint="Enter your address"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"
+                        android:textColorLink="@android:color/black" />
 
                     <EditText
                         android:id="@+id/etcontactno"
@@ -98,7 +75,8 @@
                         android:layout_marginTop="10dp"
                         android:ems="10"
                         android:hint="Enter Contact no"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"
+                        android:textColorLink="@android:color/black" />
 
                     <EditText
                         android:id="@+id/etemail"
@@ -107,7 +85,8 @@
                         android:layout_marginTop="10dp"
                         android:ems="10"
                         android:hint="Enter Email Address"
-                        android:inputType="textEmailAddress" />
+                        android:inputType="textEmailAddress"
+                        android:textColorLink="@android:color/black" />
 
                     <EditText
                         android:id="@+id/etwebsite"
@@ -116,7 +95,8 @@
                         android:layout_marginTop="10dp"
                         android:ems="10"
                         android:hint="Enter a website"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"
+                        android:textColorLink="@android:color/black" />
 
                     <TextView
                         android:id="@+id/textView14"
@@ -136,7 +116,8 @@
                         android:layout_marginTop="5dp"
                         android:ems="10"
                         android:hint="Enter about Business"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"
+                        android:textColorLink="@android:color/black" />
 
                     <TextView
                         android:id="@+id/textView16"
@@ -155,7 +136,8 @@
                         android:layout_marginTop="5dp"
                         android:ems="10"
                         android:hint="Enter services"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"
+                        android:textColorLink="@android:color/black" />
 
                 </LinearLayout>
 
@@ -167,12 +149,12 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp"
+                    android:background="@drawable/btnlogin"
                     android:text="REGISTRATION" />
 
             </LinearLayout>
 
         </ScrollView>
     </LinearLayout>
-
 
 </LinearLayout>

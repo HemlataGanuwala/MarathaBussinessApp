@@ -10,17 +10,21 @@ import android.view.ViewGroup;
 
 
 
-public class AccountFragment extends Fragment {
+public class photouploadFragment extends Fragment {
 
-  View view;
+View view;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view=inflater.inflate(R.layout.fragment_account, container, false);
+        view=inflater.inflate(R.layout.fragment_photoupload, container, false);
         return view;
     }
+
+
 
 
 

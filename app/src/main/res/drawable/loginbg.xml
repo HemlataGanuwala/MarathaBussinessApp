@@ -14,8 +14,8 @@
             android:pivotY="90%">
             <shape
                 android:shape="rectangle">
-              <gradient android:startColor="@color/yellow"
-                  android:endColor="@color/orange"></gradient>
+              <gradient android:startColor="@color/white"
+                  android:endColor="@color/white"></gradient>
             </shape>
         </rotate>
     </item>
