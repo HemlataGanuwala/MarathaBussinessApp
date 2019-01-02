@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".RegistrationFragment">
+    android:background="@drawable/background"
+    tools:context=".ApprovalDetailsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,8 +40,8 @@
                     android:layout_marginBottom="10dp"
                     android:orientation="vertical">
 
-                    <EditText
-                        android:id="@+id/etname"
+                    <TextView
+                        android:id="@+id/etappname"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginTop="10dp"
@@ -48,10 +49,11 @@
                         android:ems="10"
                         android:hint="Enter your name"
                         android:inputType="textPersonName"
-                        android:paddingLeft="5dp" />
+                        android:paddingLeft="5dp"
+                        android:textSize="18sp"/>
 
-                    <EditText
-                        android:id="@+id/etnameofbusiness"
+                    <TextView
+                        android:id="@+id/etappnameofbusiness"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginTop="3dp"
@@ -59,7 +61,8 @@
                         android:ems="10"
                         android:hint="Name of Business"
                         android:inputType="textPersonName"
-                        android:paddingLeft="5dp" />
+                        android:paddingLeft="5dp"
+                        android:textSize="18sp"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -68,20 +71,14 @@
                         android:gravity="center"
                         android:orientation="horizontal">
 
-                        <Spinner
-                            android:id="@+id/spiOccupation"
+                        <TextView
+                            android:id="@+id/tvappOccupation"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:layout_weight=".60"
                             android:background="@drawable/transboarder"
-                            android:scrollbarSize="18dp" />
+                            android:textSize="18sp"/>
 
-                        <Button
-                            android:id="@+id/btnaddtype"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Button" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -92,25 +89,15 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:id="@+id/imgdocument"
-                            android:layout_width="match_parent"
+                            android:id="@+id/imgappdocument"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_weight="1"
                             android:background="@drawable/transboarder" />
 
-                        <Button
-                            android:id="@+id/btnbrowse"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/btnlogin"
-                            android:text="Any document upload" />
                     </LinearLayout>
 
-                    <EditText
-                        android:id="@+id/etaddress"
+                    <TextView
+                        android:id="@+id/etappaddress"
                         android:layout_width="match_parent"
                         android:layout_height="70dp"
                         android:layout_marginTop="5dp"
@@ -118,15 +105,16 @@
                         android:ems="10"
                         android:hint="Enter your address"
                         android:inputType="textPersonName"
-                        android:paddingLeft="5dp" />
+                        android:paddingLeft="5dp"
+                        android:textSize="18sp"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <EditText
-                            android:id="@+id/etcontactno"
+                        <TextView
+                            android:id="@+id/etappcontactno"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:layout_marginTop="10dp"
@@ -136,10 +124,11 @@
                             android:ems="10"
                             android:hint="Enter Contact no"
                             android:inputType="phone"
-                            android:paddingLeft="5dp" />
+                            android:paddingLeft="5dp"
+                            android:textSize="18sp"/>
 
-                        <EditText
-                            android:id="@+id/etemail"
+                        <TextView
+                            android:id="@+id/etappemail"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:layout_marginLeft="2dp"
@@ -149,11 +138,12 @@
                             android:ems="10"
                             android:hint="Enter Email Address"
                             android:inputType="textEmailAddress"
-                            android:paddingLeft="5dp" />
+                            android:paddingLeft="5dp"
+                            android:textSize="18sp"/>
                     </LinearLayout>
 
-                    <EditText
-                        android:id="@+id/etwebsite"
+                    <TextView
+                        android:id="@+id/etappwebsite"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginTop="5dp"
@@ -161,10 +151,11 @@
                         android:ems="10"
                         android:hint="Enter a website"
                         android:inputType="textWebEditText"
-                        android:paddingLeft="5dp" />
+                        android:paddingLeft="5dp"
+                        android:textSize="18sp"/>
 
-                    <EditText
-                        android:id="@+id/etabout"
+                    <TextView
+                        android:id="@+id/etappabout"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginTop="3dp"
@@ -172,10 +163,11 @@
                         android:ems="10"
                         android:hint="Enter About Your Business"
                         android:inputType="textPersonName"
-                        android:paddingLeft="5dp" />
+                        android:paddingLeft="5dp"
+                        android:textSize="18sp"/>
 
-                    <EditText
-                        android:id="@+id/etservice"
+                    <TextView
+                        android:id="@+id/etappservice"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginTop="3dp"
@@ -183,10 +175,11 @@
                         android:ems="10"
                         android:hint="Enter Services"
                         android:inputType="textPersonName"
-                        android:paddingLeft="5dp" />
+                        android:paddingLeft="5dp"
+                        android:textSize="18sp"/>
 
-                    <EditText
-                        android:id="@+id/etbestprice"
+                    <TextView
+                        android:id="@+id/etappbestprice"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginTop="3dp"
@@ -194,20 +187,10 @@
                         android:ems="10"
                         android:hint="Enter Best Price"
                         android:inputType="number"
-                        android:paddingLeft="5dp" />
+                        android:paddingLeft="5dp"
+                        android:textSize="18sp"/>
 
                 </LinearLayout>
-
-                <Button
-                    android:id="@+id/btnregister"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/btnlogin"
-                    android:text="REGISTRATION" />
 
             </LinearLayout>
 
@@ -218,6 +201,4 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
-
-
 </LinearLayout>

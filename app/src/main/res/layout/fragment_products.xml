@@ -3,10 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".photouploadFragment">
-
+    android:background="@drawable/background"
+    tools:context=".ProductsFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="61dp"
             android:gravity="center"
-            android:text="Upload your Photo"
+            android:text="Products"
             android:textColor="@android:color/black"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -52,16 +51,6 @@
                         android:layout_weight=".20"
                         android:background="@drawable/bgtxt" />
 
-                    <Button
-                        android:id="@+id/btnupload1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/btnlogin"
-                        android:text="Upload" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -79,16 +68,6 @@
                         android:layout_weight=".20"
                         android:background="@drawable/bgtxt" />
 
-                    <Button
-                        android:id="@+id/btnupload2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/btnlogin"
-                        android:text="Upload" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -114,16 +93,6 @@
                         android:layout_weight=".20"
                         android:background="@drawable/bgtxt" />
 
-                    <Button
-                        android:id="@+id/btnupload3"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/btnlogin"
-                        android:text="Upload" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -141,21 +110,9 @@
                         android:layout_weight=".20"
                         android:background="@drawable/bgtxt" />
 
-                    <Button
-                        android:id="@+id/btnupload4"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/btnlogin"
-                        android:text="Upload" />
                 </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>
-        </LinearLayout>
-
     </LinearLayout>
-
+</LinearLayout>
