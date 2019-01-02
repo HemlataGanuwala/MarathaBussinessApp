@@ -17,19 +17,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="1"
-        android:gravity="center">
+        android:layout_weight=".90"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/textView11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_weight="1"
             android:gravity="center"
             android:text="Account Details"
             android:textColor="@android:color/white"
-            android:textSize="24sp"
+            android:textSize="26sp"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -38,60 +38,66 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight=".20"
+        android:layout_weight=".10"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="10dp"
+            android:layout_weight="1"
             android:background="@drawable/transboarder"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:drawableLeft="@drawable/ic_accountname"
+                android:drawablePadding="5dp"
+                android:gravity="left|center"
                 android:text="Account Hold :"
                 android:textSize="16sp" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight=".50"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:drawablePadding="5dp"
-                android:gravity="center"
-                android:paddingLeft="5dp"
+                android:gravity="left|center"
+                android:paddingLeft="20dp"
                 android:text="HEMANT MADHUKAR BHOSALE"
                 android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
+            android:layout_weight="1"
             android:background="@drawable/transboarder"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:drawableLeft="@drawable/ic_accountname"
+                android:drawablePadding="5dp"
+                android:gravity="left|center"
                 android:text="Bank Name     :"
                 android:textSize="16sp" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight=".50"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:drawablePadding="5dp"
                 android:gravity="left|center"
                 android:paddingLeft="20dp"
@@ -101,26 +107,29 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
+            android:layout_weight="1"
             android:background="@drawable/transboarder"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:drawableLeft="@drawable/ic_accountname"
+                android:drawablePadding="5dp"
+                android:gravity="left|center"
                 android:text="Branch Name :"
                 android:textSize="16sp" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight=".50"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:drawablePadding="5dp"
                 android:gravity="left|center"
                 android:paddingLeft="20dp"
@@ -130,26 +139,29 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
+            android:layout_weight="1"
             android:background="@drawable/transboarder"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:drawableLeft="@drawable/ic_accountname"
+                android:drawablePadding="5dp"
+                android:gravity="left|center"
                 android:text="Account No.   :"
                 android:textSize="16sp" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight=".50"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:drawablePadding="5dp"
                 android:gravity="left|center"
                 android:paddingLeft="20dp"
@@ -159,26 +171,29 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
+            android:layout_weight="1"
             android:background="@drawable/transboarder"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:drawableLeft="@drawable/ic_accountname"
+                android:drawablePadding="5dp"
+                android:gravity="left|center"
                 android:text="IFSC Code       :"
                 android:textSize="16sp" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight=".50"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:drawablePadding="5dp"
                 android:gravity="left|center"
                 android:paddingLeft="20dp"
@@ -188,26 +203,30 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
             android:background="@drawable/transboarder"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight=".80"
                 android:drawableLeft="@drawable/ic_accountname"
+                android:drawablePadding="5dp"
+                android:gravity="left|center"
                 android:text="MICR Code      :"
                 android:textSize="16sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight=".50"
+                android:layout_weight=".45"
                 android:drawablePadding="5dp"
                 android:gravity="left|center"
                 android:paddingLeft="20dp"
