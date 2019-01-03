@@ -3,16 +3,16 @@ package com.maratha.hema.marathabussinessapp;
 public class RegListPlanet {
 
     private String CustomerId;
-    private String PersonName;
+    private String Contact;
     private String Location;
 //    private String TypeofBusiness;
 
 
-    public RegListPlanet(String customerId, String personName, String location)
+    public RegListPlanet(String customerId, String contact, String location)
     {
 //
         this.CustomerId = customerId;
-        this.PersonName = personName;
+        this.Contact = contact;
         this.Location = location;
 //        this.TypeofBusiness = typeofBusiness;
 
@@ -26,12 +26,12 @@ public class RegListPlanet {
         CustomerId = customerId;
     }
 
-    public String getPersonName() {
-        return PersonName;
+    public String getContact() {
+        return Contact;
     }
 
-    public void setPersonName(String personName) {
-        PersonName = personName;
+    public void setContact(String contact) {
+        Contact = contact;
     }
 
     public String getLocation() {

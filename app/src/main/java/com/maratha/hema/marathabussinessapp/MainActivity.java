@@ -12,7 +12,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.maratha.hema.marathabussinessapp.Approval.LoginActivity;
+import com.maratha.hema.marathabussinessapp.TypeSelect.InfoActivity;
 
 import org.apache.http.NameValuePair;
 import org.json.JSONArray;
@@ -31,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<SpinnerTypePlanet> typePlanetslist = new ArrayList<SpinnerTypePlanet>();
     ProgressDialog progress;
     ImageView imageViewphoto;
+    TextView textViewregister;
 
 
     @Override
@@ -42,16 +47,17 @@ public class MainActivity extends AppCompatActivity {
         path = globalVariable.getconstr();
 
         buttonnext = (Button)findViewById(R.id.btnnext);
-        buttonregister = (Button)findViewById(R.id.btnregister);
+//        buttonregister = (Button)findViewById(R.id.btnregister);
         spinnertype = (Spinner)findViewById(R.id.spinnertype);
-        imageViewphoto = (ImageView)findViewById(R.id.imgloginphoto);
+        textViewregister = (TextView) findViewById(R.id.tvregister);
+        imageViewphoto = (ImageView) findViewById(R.id.imgloginphoto);
 
         new GetOccupationData().execute();
 
-        imageViewphoto.setOnClickListener(new View.OnClickListener() {
+        textViewregister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                Intent intent = new Intent(MainActivity.this,InfoActivity.class);
                 startActivity(intent);
             }
         });
@@ -66,10 +72,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        buttonregister.setOnClickListener(new View.OnClickListener() {
+        imageViewphoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,InfoActivity.class);
+                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
                 startActivity(intent);
             }
         });

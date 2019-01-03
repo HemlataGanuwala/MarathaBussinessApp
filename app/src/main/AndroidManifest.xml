@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:name=".GlobalClass"
@@ -22,20 +23,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".Approval.LoginActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
         <activity android:name=".RegActivity" />
-        <activity android:name=".InfoActivity" />
+        <activity android:name=".TypeSelect.InfoActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".BusinesstypeActivity" />
-        <activity android:name=".BusinesspersondetailsActivity" />
-        <activity android:name=".ApprovalActivity" />
-        <activity android:name=".ImageShowActivity" />
-        <activity android:name=".ApprovalDetailsActivity"></activity>
+        <activity android:name=".TypeSelect.BusinesspersondetailsActivity" />
+        <activity android:name=".Approval.ApprovalActivity" />
+        <activity android:name=".TypeSelect.ImageShowActivity" />
+        <activity android:name=".Approval.ApprovalDetailsActivity" />
+
     </application>
 
 </manifest>

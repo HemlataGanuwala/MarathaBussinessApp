@@ -21,6 +21,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.maratha.hema.marathabussinessapp.TypeSelect.ImageShowActivity;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
@@ -78,7 +80,6 @@ public class RegistrationFragment extends Fragment {
         imageViewdocument = (ImageView)view.findViewById(R.id.imgdocument);
         buttonregister = (Button)view.findViewById(R.id.btnregister);
         buttonupload = (Button)view.findViewById(R.id.btnbrowse);
-        buttonaddtype = (Button)view.findViewById(R.id.btnaddtype);
 
         new GetOccupationData().execute();
 

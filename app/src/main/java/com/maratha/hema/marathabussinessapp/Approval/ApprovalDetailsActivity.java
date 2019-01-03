@@ -1,4 +1,4 @@
-package com.maratha.hema.marathabussinessapp;
+package com.maratha.hema.marathabussinessapp.Approval;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -6,11 +6,16 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.maratha.hema.marathabussinessapp.GlobalClass;
+import com.maratha.hema.marathabussinessapp.R;
+import com.maratha.hema.marathabussinessapp.ServiceHandler;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -26,20 +31,9 @@ public class ApprovalDetailsActivity extends AppCompatActivity {
     TextView textViewname,textViewbusiname,textViewocctype,textViewaddress,textViewcontact,textViewemail,textViewwebsite,textViewabout,textViewservice,textViewbestprice;
     ImageView imageViewdocument;
     ServiceHandler shh;
-    String path;
-    String pname;
-    String businame;
-    String btype;
-    String address;
-    String contact;
-    String email;
-    String website;
-    String cabout;
-    String service;
-    String bestprice;
-    String custid;
-    String document;
-    byte doc;
+    String path, pname, businame,btype, address, contact,email, website, cabout,service, bestprice, custid,document, doc;
+    Button buttonreject,buttonapproval,buttononhold;
+    int Status = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +54,23 @@ public class ApprovalDetailsActivity extends AppCompatActivity {
         textViewservice = (TextView)findViewById(R.id.etappservice);
         textViewbestprice = (TextView)findViewById(R.id.etappbestprice);
         imageViewdocument = (ImageView)findViewById(R.id.imgappdocument);
+        buttonreject = (Button)findViewById(R.id.btndetailreject);
+        buttonapproval = (Button)findViewById(R.id.btndetailapproval);
+
+        buttonapproval.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new ApprovalUpdate().execute();
+            }
+        });
+
+        buttonreject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new ApprovalReject().execute();
+            }
+        });
+
 
         Display();
 
@@ -155,6 +166,119 @@ public class ApprovalDetailsActivity extends AppCompatActivity {
 //            byte[] decodeString = Base64.decode(document, Base64.DEFAULT);
             Bitmap decodebitmap = BitmapFactory.decodeByteArray(doc, 0, doc.length);
             imageViewdocument.setImageBitmap(decodebitmap);
+
+        }
+    }
+
+    class ApprovalUpdate extends AsyncTask<String, String, String>
+    {
+
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+        }
+        @Override
+        protected String doInBackground(String... params)
+        {
+            shh = new ServiceHandler();
+            String url =  path + "RegistrationApi/ApprovalCustomer";
+
+            Log.d("Url: ", "> " + url);
+
+            try {
+                List<NameValuePair> params2 = new ArrayList<>();
+                params2.add(new BasicNameValuePair("Bid", custid));
+                params2.add(new BasicNameValuePair("Status", "1"));
+
+                String jsonStr = shh.makeServiceCall(url, ServiceHandler.POST, params2);
+
+                if (jsonStr != null)
+                {
+                    JSONObject c1 = new JSONObject(jsonStr);
+                    Status = c1.getInt("Status");
+
+
+                } else {
+                    Toast.makeText(ApprovalDetailsActivity.this, "Data Not Available", Toast.LENGTH_LONG).show();
+                }
+
+            }
+            catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+           if (Status == 1)
+           {
+               Toast.makeText(ApprovalDetailsActivity.this, "Approval Successfully", Toast.LENGTH_LONG).show();
+           }
+           else
+           {
+               Toast.makeText(ApprovalDetailsActivity.this, "Approval Failed", Toast.LENGTH_LONG).show();
+           }
+
+        }
+    }
+
+
+    class ApprovalReject extends AsyncTask<String, String, String>
+    {
+
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+        }
+        @Override
+        protected String doInBackground(String... params)
+        {
+            shh = new ServiceHandler();
+            String url =  path + "RegistrationApi/ApprovalReject";
+
+            Log.d("Url: ", "> " + url);
+
+            try {
+                List<NameValuePair> params2 = new ArrayList<>();
+                params2.add(new BasicNameValuePair("Bid", custid));
+                params2.add(new BasicNameValuePair("Status", "2"));
+
+                String jsonStr = shh.makeServiceCall(url, ServiceHandler.POST, params2);
+
+                if (jsonStr != null)
+                {
+                    JSONObject c1 = new JSONObject(jsonStr);
+                    Status = c1.getInt("Status");
+
+
+                } else {
+                    Toast.makeText(ApprovalDetailsActivity.this, "Data Not Available", Toast.LENGTH_LONG).show();
+                }
+
+            }
+            catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            if (Status == 1)
+            {
+                Toast.makeText(ApprovalDetailsActivity.this, "Reject Successfully", Toast.LENGTH_LONG).show();
+            }
+            else
+            {
+                Toast.makeText(ApprovalDetailsActivity.this, "Reject Failed", Toast.LENGTH_LONG).show();
+            }
 
         }
     }

@@ -1,9 +1,13 @@
-package com.maratha.hema.marathabussinessapp;
+package com.maratha.hema.marathabussinessapp.TypeSelect;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.maratha.hema.marathabussinessapp.R;
+import com.maratha.hema.marathabussinessapp.ViewPagerAdapter;
+import com.maratha.hema.marathabussinessapp.photouploadFragment;
 
 public class BusinesspersondetailsActivity extends AppCompatActivity {
 

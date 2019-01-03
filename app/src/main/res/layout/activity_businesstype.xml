@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".BusinesstypeActivity">
+    tools:context=".photouploadFragment$BusinesstypeActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,8 +23,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="Name"
+                android:gravity="start"
+                android:paddingLeft="10dp"
+                android:text="Location"
                 android:textColor="@color/orange"
                 android:textSize="18sp"
                 android:textStyle="bold|italic" />
@@ -34,22 +35,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="Location"
+                android:gravity="start"
+                android:text="Contact"
                 android:textColor="@color/orange"
                 android:textSize="18sp"
                 android:textStyle="bold|italic" />
 
-            <Button
-                android:id="@+id/btnmoredetails2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:text="Details"
-                android:textColor="@color/orange"
-                android:textSize="18sp"
-                android:textStyle="bold|italic" />
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
