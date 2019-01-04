@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.maratha.hema.marathabussinessapp.AccountDetailsActivity;
+import com.maratha.hema.marathabussinessapp.AccountFragment;
 import com.maratha.hema.marathabussinessapp.R;
 import com.maratha.hema.marathabussinessapp.RegActivity;
 
 public class InfoActivity extends AppCompatActivity {
 
-    Button buttonnext;
+    Button buttonnext, buttondetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,11 +21,21 @@ public class InfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_info);
 
         buttonnext = (Button)findViewById(R.id.btninfonext);
+        buttondetails = (Button)findViewById(R.id.btndetails);
 
         buttonnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent(InfoActivity.this,RegActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        buttondetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(InfoActivity.this, AccountDetailsActivity.class);
                 startActivity(intent);
             }
         });

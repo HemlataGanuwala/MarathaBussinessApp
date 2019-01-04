@@ -8,22 +8,29 @@
     android:orientation="vertical"
     tools:context=".TypeSelect.InfoActivity">
 
-    <TextView
-        android:id="@+id/textView7"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="5dp"
-        android:gravity="center"
-        android:text="Information"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:layout_weight=".99"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:text="Information"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight=".30"
+        android:layout_weight=".22"
         android:orientation="vertical">
 
         <TextView
@@ -31,23 +38,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="5dp"
             android:text="About"
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <EditText
+        <TextView
             android:id="@+id/editText"
             android:layout_width="match_parent"
-            android:layout_height="74dp"
+            android:layout_height="70dp"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
             android:layout_marginRight="5dp"
             android:background="@drawable/bgtxt"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:textColorLink="@android:color/black" />
+            android:paddingLeft="5dp"
+            android:text="@string/About"
+            android:textColor="@android:color/black"
+            android:textColorLink="@android:color/black"
+            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/textView9"
@@ -60,17 +68,19 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <EditText
+        <TextView
             android:id="@+id/editText2"
             android:layout_width="match_parent"
-            android:layout_height="74dp"
+            android:layout_height="69dp"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="5dp"
             android:background="@drawable/bgtxt"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:textColorLink="@android:color/black" />
+            android:paddingLeft="5dp"
+            android:text="@string/Benifites"
+            android:textColor="@android:color/black"
+            android:textColorLink="@android:color/black"
+            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/textView10"
@@ -83,36 +93,54 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <EditText
+        <TextView
             android:id="@+id/editText3"
             android:layout_width="match_parent"
-            android:layout_height="74dp"
+            android:layout_height="200dp"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="5dp"
             android:background="@drawable/bgtxt"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:textColorLink="@android:color/black" />
+            android:paddingLeft="5dp"
+            android:text="@string/Registration"
+            android:textColor="@android:color/black"
+            android:textColorLink="@android:color/black"
+            android:textSize="13sp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="120dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:layout_weight=".95"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btndetails"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight=".45"
+            android:background="@drawable/btnlogin"
+            android:gravity="center"
+            android:text="Account Details"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/btninfonext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="160dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
             android:background="@drawable/next"
-            android:gravity="left|end" />
+            android:gravity="right|end" />
+
     </LinearLayout>
 
 </LinearLayout>
