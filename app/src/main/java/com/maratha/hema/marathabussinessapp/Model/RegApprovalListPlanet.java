@@ -1,11 +1,11 @@
-package com.maratha.hema.marathabussinessapp;
+package com.maratha.hema.marathabussinessapp.Model;
 
 public class RegApprovalListPlanet {
 
     private String CustomerId;
     private String Contact;
     private String PersonName;
-    private boolean Checked;
+    private boolean isChecked;
 
 
     public RegApprovalListPlanet(String customerId, String contact, String personName,boolean checked)
@@ -14,7 +14,7 @@ public class RegApprovalListPlanet {
         this.CustomerId = customerId;
         this.Contact = contact;
         this.PersonName = personName;
-        this.Checked = checked;
+        this.isChecked = checked;
 
     }
 
@@ -43,10 +43,11 @@ public class RegApprovalListPlanet {
     }
 
     public boolean getChecked() {
-        return Checked;
+        return isChecked;
     }
 
     public void setChecked(boolean checked) {
-        this.Checked= checked;
+        isChecked= checked;
     }
+
 }

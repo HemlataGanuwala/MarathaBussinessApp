@@ -1,4 +1,4 @@
-package com.maratha.hema.marathabussinessapp;
+package com.maratha.hema.marathabussinessapp.Adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.maratha.hema.marathabussinessapp.R;
+import com.maratha.hema.marathabussinessapp.Model.RegListPlanet;
+
 import java.util.List;
 
 public class RegistrationAdapter extends RecyclerView.Adapter<RegistrationAdapter.ListHolder> {

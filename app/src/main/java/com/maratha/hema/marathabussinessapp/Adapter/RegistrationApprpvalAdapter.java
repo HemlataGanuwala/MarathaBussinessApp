@@ -1,4 +1,4 @@
-package com.maratha.hema.marathabussinessapp;
+package com.maratha.hema.marathabussinessapp.Adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -6,9 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.maratha.hema.marathabussinessapp.R;
+import com.maratha.hema.marathabussinessapp.Model.RegApprovalListPlanet;
 
 import java.util.List;
 
@@ -22,7 +24,7 @@ public class RegistrationApprpvalAdapter extends RecyclerView.Adapter<Registrati
 
         void iconImageViewOnClick(View v, int position);
 
-        void onItemCheck(String checkBoxName, int position);
+//        void onItemCheck(String checkBoxName, int position);
     }
     public void setOnItemClickListner(OnItemClickListner listner){
         mlistner = listner;
@@ -47,6 +49,14 @@ public class RegistrationApprpvalAdapter extends RecyclerView.Adapter<Registrati
         listHolder.textViewname.setText(mPlanetList1.get(i).getPersonName());
         listHolder.textViewcustid.setText(mPlanetList1.get(i).getCustomerId());
 
+        if (mPlanetList1.get(i).getChecked())
+        {
+            listHolder.checkBoxapp.setChecked(true);
+        }
+        else
+        {
+            listHolder.checkBoxapp.setChecked(false);
+        }
 
     }
 
@@ -61,14 +71,14 @@ public class RegistrationApprpvalAdapter extends RecyclerView.Adapter<Registrati
         ImageView imageViewcall;
         CheckBox checkBoxapp;
 
-        public ListHolder(View itemView) {
+        public ListHolder(final View itemView) {
             super(itemView);
             textViewcontact = (TextView) itemView.findViewById(R.id.tvlistappcontact);
             textViewcustid = (TextView) itemView.findViewById(R.id.tvlistappcustid);
             textViewname = (TextView) itemView.findViewById(R.id.tvlistappname);
             imageViewcall = (ImageView) itemView.findViewById(R.id.imglistappcall);
             checkBoxapp = (CheckBox)itemView.findViewById(R.id.chkapp);
-
+            this.setIsRecyclable(false);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -93,17 +103,26 @@ public class RegistrationApprpvalAdapter extends RecyclerView.Adapter<Registrati
                 }
             });
 
-//            checkBoxapp.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    if(mlistner != null){
-//                        int position = getAdapterPosition();
-//                        if(position != RecyclerView.NO_POSITION){
-//                            mlistner.iconImageViewOnClick(v, getAdapterPosition());
-//                        }
-//                    }
-//                }
-//            });
+            checkBoxapp.setOnClickListener( new View.OnClickListener() {
+                    public void onClick(View v) {
+
+                        int adptorpos = getAdapterPosition();
+                        if(mPlanetList1.get(adptorpos).getChecked())
+                        {
+                            checkBoxapp.setChecked(false);
+                            mPlanetList1.get(adptorpos).setChecked(false);
+                        }
+                        else
+                        {
+                            checkBoxapp.setChecked(true);
+                            mPlanetList1.get(adptorpos).setChecked(true);
+                        }
+//                        CheckBox cb = (CheckBox) v ;
+//                        RegApprovalListPlanet planet = (RegApprovalListPlanet) cb.getTag();
+//                        planet.setChecked( cb.isChecked() );
+
+                    }
+                });
         }
     }
 }

@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".photouploadFragment$BusinesstypeActivity">
+    tools:context=".TypeSelect.BusinesstypeActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,6 +14,16 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvbusitypenameofbusi"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold|italic" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,7 +36,7 @@
                 android:layout_weight="1"
                 android:gravity="start"
                 android:paddingLeft="10dp"
-                android:text="Location"
+                android:text="Name Of Business"
                 android:textColor="@color/orange"
                 android:textSize="18sp"
                 android:textStyle="bold|italic" />

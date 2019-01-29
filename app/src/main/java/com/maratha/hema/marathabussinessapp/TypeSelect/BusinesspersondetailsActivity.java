@@ -5,9 +5,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.maratha.hema.marathabussinessapp.CustomerRegistrtion.AccountFragment;
 import com.maratha.hema.marathabussinessapp.R;
 import com.maratha.hema.marathabussinessapp.ViewPagerAdapter;
-import com.maratha.hema.marathabussinessapp.photouploadFragment;
+
 
 public class BusinesspersondetailsActivity extends AppCompatActivity {
 
@@ -24,7 +25,7 @@ public class BusinesspersondetailsActivity extends AppCompatActivity {
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.AddFragment(new BusiPersonDetailFragment(),"Details");
-        adapter.AddFragment(new photouploadFragment(),"Images");
+        adapter.AddFragment(new ProductsFragment(),"Products");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
     }

@@ -31,6 +31,7 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
+                    android:visibility="visible"
                     app:srcCompat="@drawable/photo111" />
             </LinearLayout>
 
@@ -90,6 +91,17 @@
                 android:textSize="30sp"
                 android:textStyle="bold"
                 app:fontFamily="@font/aclonica" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Maratha Business App"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:textColor="@color/orange"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
 
             <TextView
                 android:id="@+id/textView5"

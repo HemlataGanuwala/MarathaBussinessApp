@@ -1,20 +1,20 @@
-package com.maratha.hema.marathabussinessapp;
+package com.maratha.hema.marathabussinessapp.Model;
 
 public class RegListPlanet {
 
     private String CustomerId;
     private String Contact;
     private String Location;
-//    private String TypeofBusiness;
+    private String PersonName;
 
 
-    public RegListPlanet(String customerId, String contact, String location)
+    public RegListPlanet(String customerId, String contact, String location,String personName)
     {
 //
         this.CustomerId = customerId;
         this.Contact = contact;
         this.Location = location;
-//        this.TypeofBusiness = typeofBusiness;
+        this.PersonName = personName;
 
     }
 
@@ -42,5 +42,11 @@ public class RegListPlanet {
         Location = location;
     }
 
+    public String getPersonName() {
+        return PersonName;
+    }
 
+    public void setPersonName(String personName) {
+        PersonName = personName;
+    }
 }
