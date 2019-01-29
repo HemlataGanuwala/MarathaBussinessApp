@@ -6,10 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.maratha.hema.marathabussinessapp.AccountDetailsActivity;
-import com.maratha.hema.marathabussinessapp.AccountFragment;
+import com.maratha.hema.marathabussinessapp.CustomerRegistrtion.AccountDetailsActivity;
 import com.maratha.hema.marathabussinessapp.R;
-import com.maratha.hema.marathabussinessapp.RegActivity;
+import com.maratha.hema.marathabussinessapp.CustomerRegistrtion.RegActivity;
 
 public class InfoActivity extends AppCompatActivity {
 

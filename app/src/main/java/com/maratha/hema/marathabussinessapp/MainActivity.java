@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.maratha.hema.marathabussinessapp.Approval.LoginActivity;
+import com.maratha.hema.marathabussinessapp.TypeSelect.BusinesstypeActivity;
 import com.maratha.hema.marathabussinessapp.TypeSelect.InfoActivity;
 
 import org.apache.http.NameValuePair;
@@ -66,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 spinname = spinnertype.getSelectedItem().toString();
+
                 Intent intent = new Intent(MainActivity.this,BusinesstypeActivity.class);
                 intent.putExtra("a1",spinname);
                 startActivity(intent);

@@ -17,10 +17,8 @@ import android.widget.Toast;
 
 import com.maratha.hema.marathabussinessapp.GlobalClass;
 import com.maratha.hema.marathabussinessapp.R;
-import com.maratha.hema.marathabussinessapp.RegApprovalListPlanet;
-import com.maratha.hema.marathabussinessapp.RegListPlanet;
-import com.maratha.hema.marathabussinessapp.RegistrationAdapter;
-import com.maratha.hema.marathabussinessapp.RegistrationApprpvalAdapter;
+import com.maratha.hema.marathabussinessapp.Model.RegApprovalListPlanet;
+import com.maratha.hema.marathabussinessapp.Adapter.RegistrationApprpvalAdapter;
 import com.maratha.hema.marathabussinessapp.ServiceHandler;
 
 import org.apache.http.NameValuePair;
@@ -61,10 +59,25 @@ public class ApprovalActivity extends AppCompatActivity implements RegistrationA
         buttonapproval.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                chk = mPlanetlist.equals(true);
-                if (chk == true)
+
+               int ti = recyclerView.getAdapter().getItemCount();
+
+                for (int i = 0; i < ti; i++)
                 {
-                    new ApprovalUpdate().execute();
+
+                    checkid = (String) mPlanetlist.get(i).getCustomerId();
+
+
+                    if (mPlanetlist.get(i).getChecked())
+                    {
+                        new ApprovalUpdate().execute();
+                    }
+                    else {
+
+                    }
+
+                    try  { Thread.sleep(500);}
+                    catch (InterruptedException e){e.printStackTrace();}
                 }
 
             }
@@ -78,6 +91,7 @@ public class ApprovalActivity extends AppCompatActivity implements RegistrationA
         Intent intent = new Intent(ApprovalActivity.this,ApprovalDetailsActivity.class);
         RegApprovalListPlanet planet = mPlanetlist.get(position);
         intent.putExtra("a1",planet.getCustomerId());
+        intent.putExtra("a2",planet.getPersonName());
         startActivity(intent);
 
 
@@ -98,11 +112,11 @@ public class ApprovalActivity extends AppCompatActivity implements RegistrationA
         }
     }
 
-    @Override
-    public void onItemCheck(String checkBoxName, int position) {
-        RegApprovalListPlanet planet = mPlanetlist.get(position);
-        checkid = planet.getCustomerId();
-    }
+//    @Override
+//    public void onItemCheck(String checkBoxName, int position) {
+//        RegApprovalListPlanet planet = mPlanetlist.get(position);
+//        checkid = planet.getCustomerId();
+//    }
 
     private void showContacts() {
         // Check the SDK version and whether the permission is already granted or not.
@@ -216,7 +230,7 @@ public class ApprovalActivity extends AppCompatActivity implements RegistrationA
 
             try {
                 List<NameValuePair> params2 = new ArrayList<>();
-                params2.add(new BasicNameValuePair("Bid", custid));
+                params2.add(new BasicNameValuePair("Bid", checkid));
                 params2.add(new BasicNameValuePair("Status", "1"));
 
                 String jsonStr = shh.makeServiceCall(url, ServiceHandler.POST, params2);

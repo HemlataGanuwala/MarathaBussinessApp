@@ -1,10 +1,12 @@
-package com.maratha.hema.marathabussinessapp;
+package com.maratha.hema.marathabussinessapp.CustomerRegistrtion;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.maratha.hema.marathabussinessapp.R;
 
 public class AccountDetailsActivity extends AppCompatActivity {
 

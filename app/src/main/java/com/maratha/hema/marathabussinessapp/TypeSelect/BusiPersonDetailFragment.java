@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,7 +66,6 @@ public class BusiPersonDetailFragment extends Fragment {
         textViewabout = (TextView)view.findViewById(R.id.etabout);
         textViewservice = (TextView)view.findViewById(R.id.etservice);
         textViewbestprice = (TextView)view.findViewById(R.id.etbestprice);
-
         Display();
 
         new FetchList1().execute();

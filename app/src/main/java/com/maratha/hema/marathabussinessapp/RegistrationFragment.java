@@ -4,11 +4,14 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.ImageFormat;
 import android.graphics.drawable.ColorDrawable;
+import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +24,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.maratha.hema.marathabussinessapp.CustomerRegistrtion.DocumentPhotoUploadActivity;
 import com.maratha.hema.marathabussinessapp.TypeSelect.ImageShowActivity;
 
 import org.apache.http.NameValuePair;
@@ -28,29 +33,32 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import static android.app.Activity.RESULT_OK;
 
 
 public class RegistrationFragment extends Fragment {
 
+
     View view;
     EditText editTextname,editTextnamebusiness,editTextaddress,editTextcontact,editTextemail,editTextwebsite,editTextabout,editTextservice,editTextbestprice;
     Spinner spinnertypebusiness;
-    ImageView imageViewdocument;
-    Button buttonregister,buttonupload,buttonaddtype;
+    Button buttonregister,buttonnext,buttonaddtype;
     ProgressDialog progress;
     ServiceHandler shh;
     int Status =1;
-    String path,name,nmbusiness,address,contact,email,website,about,services,bestprice,typeofbusiness,imagedoc;
+    String path,name,nmbusiness,address,contact,email,website,about,services,bestprice,typeofbusiness,imagedoc,imagereceipt;
     SpinnerTypePlanet spinnerTypePlanet;
     ArrayList<SpinnerTypePlanet> typePlanetslist = new ArrayList<SpinnerTypePlanet>();
     TextView textViewuri;
-    Uri targetUri;
-    Bitmap bitmap;
     public RegistrationFragment() {
         // Required empty public constructor
     }
@@ -77,27 +85,45 @@ public class RegistrationFragment extends Fragment {
         editTextservice = (EditText)view.findViewById(R.id.etservice);
         editTextbestprice = (EditText)view.findViewById(R.id.etbestprice);
         spinnertypebusiness = (Spinner)view.findViewById(R.id.spiOccupation);
-        imageViewdocument = (ImageView)view.findViewById(R.id.imgdocument);
         buttonregister = (Button)view.findViewById(R.id.btnregister);
-        buttonupload = (Button)view.findViewById(R.id.btnbrowse);
+        buttonnext = (Button)view.findViewById(R.id.btnRegUpload);
+
+        buttonregister.setVisibility(View.GONE);
 
         new GetOccupationData().execute();
 
-        imageViewdocument.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),ImageShowActivity.class);
-                intent.putExtra("a1",targetUri);
-                startActivity(intent);
-            }
-        });
+        Display();
 
-        buttonupload.setOnClickListener(new View.OnClickListener() {
+        buttonnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent, 0);
+                name = editTextname.getText().toString();
+                nmbusiness = editTextnamebusiness.getText().toString();
+                address = editTextaddress.getText().toString();
+                contact = editTextcontact.getText().toString();
+                email = editTextemail.getText().toString();
+                website = editTextwebsite.getText().toString();
+                about = editTextabout.getText().toString();
+                services = editTextservice.getText().toString();
+                bestprice = editTextbestprice.getText().toString();
+                typeofbusiness = spinnertypebusiness.getSelectedItem().toString();
+
+                if(validated())
+                {
+                    Intent intent = new Intent(getActivity(), DocumentPhotoUploadActivity.class);
+                    intent.putExtra("CustName",name);
+                    intent.putExtra("NmBusiness",nmbusiness);
+                    intent.putExtra("Address",address);
+                    intent.putExtra("Contact",contact);
+                    intent.putExtra("Email",email);
+                    intent.putExtra("Website",website);
+                    intent.putExtra("About",about);
+                    intent.putExtra("Service",services);
+                    intent.putExtra("Bestprice",bestprice);
+                    intent.putExtra("TypeBusiness",typeofbusiness);
+                    startActivity(intent);
+                }
+
             }
         });
 
@@ -111,24 +137,36 @@ public class RegistrationFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        if (resultCode == RESULT_OK){
+//            targetUri = data.getData();
+//            textViewuri.setText(targetUri.toString());
+//
+//            try {
+//                bitmap = BitmapFactory.decodeStream(getActivity().getContentResolver().openInputStream(targetUri));
+//                imageViewdocument.setImageBitmap(bitmap);
+//            } catch (FileNotFoundException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
-        super.onActivityResult(requestCode, resultCode, data);
+    public void Display()
+    {
+        Intent intent = getActivity().getIntent();
+        Bundle bundle = intent.getExtras();
+        if (bundle !=null)
+        {
+            imagedoc = (String) bundle.get("P1");
+            imagereceipt = (String)bundle.get("P2");
 
-        if (resultCode == RESULT_OK){
-            targetUri = data.getData();
-            textViewuri.setText(targetUri.toString());
-
-            try {
-                bitmap = BitmapFactory.decodeStream(getActivity().getContentResolver().openInputStream(targetUri));
-                imageViewdocument.setImageBitmap(bitmap);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
+            buttonregister.setVisibility(View.VISIBLE);
         }
     }
-
 
     public void InsertData()
     {
@@ -142,10 +180,53 @@ public class RegistrationFragment extends Fragment {
         services = editTextservice.getText().toString();
         bestprice = editTextbestprice.getText().toString();
         typeofbusiness = spinnertypebusiness.getSelectedItem().toString();
-        imagedoc = bitmap.toString();
 
-        new GetInsertData().execute();
+        if(validated())
+        {
+            new GetInsertData().execute();
+        }
 
+    }
+
+    public boolean validated()
+    {
+        boolean vaild = true;
+        if(name.isEmpty() || name.length() > 32)
+        {
+            editTextname.setError("Name is too long");
+            vaild = false;
+        }
+        if(address.isEmpty())
+        {
+            editTextaddress.setError("Enter Address");
+            vaild = false;
+        }
+        if(nmbusiness.isEmpty())
+        {
+            editTextnamebusiness.setError("Enter Name of Business");
+            vaild = false;
+        }
+        if(contact.isEmpty())
+        {
+            editTextcontact.setError("Enter Contact");
+            vaild = false;
+        }
+        if(!Pattern.matches("[a-zA-Z]+", contact))
+        {
+            if(contact.length() < 6 || contact.length() > 11)
+            {
+                vaild = false;
+                editTextcontact.setError("Contact is invalid");
+            }
+            else
+            {
+                vaild = true;
+
+            }
+        }
+
+
+        return vaild;
     }
 
     public class GetInsertData extends AsyncTask<String, String, String> {
@@ -190,7 +271,7 @@ public class RegistrationFragment extends Fragment {
                 para.add(new BasicNameValuePair("AboutBusiness", about));
                 para.add(new BasicNameValuePair("Services", services));
                 para.add(new BasicNameValuePair("BestPrice", bestprice));
-                para.add(new BasicNameValuePair("Document", imagedoc));
+//                para.add(new BasicNameValuePair("Document", image_str));
                 para.add(new BasicNameValuePair("Status", "0"));
 
 
@@ -241,10 +322,12 @@ public class RegistrationFragment extends Fragment {
             editTextabout.setText("");
             editTextservice.setText("");
             editTextbestprice.setText("");
-
+//            imageViewdocument.setImageBitmap(null);
 
         }
     }
+
+
 
     public class GetOccupationData extends AsyncTask<String, String, String> {
 

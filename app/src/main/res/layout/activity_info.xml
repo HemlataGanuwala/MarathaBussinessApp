@@ -52,10 +52,11 @@
             android:layout_marginRight="5dp"
             android:background="@drawable/bgtxt"
             android:paddingLeft="5dp"
+            android:paddingTop="4dp"
             android:text="@string/About"
-            android:textColor="@android:color/black"
+            android:textColor="@color/orange"
             android:textColorLink="@android:color/black"
-            android:textSize="13sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/textView9"
@@ -71,14 +72,15 @@
         <TextView
             android:id="@+id/editText2"
             android:layout_width="match_parent"
-            android:layout_height="69dp"
+            android:layout_height="80dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="5dp"
             android:background="@drawable/bgtxt"
             android:paddingLeft="5dp"
+            android:paddingTop="5dp"
             android:text="@string/Benifites"
-            android:textColor="@android:color/black"
+            android:textColor="@color/orange"
             android:textColorLink="@android:color/black"
             android:textSize="13sp" />
 
@@ -102,8 +104,9 @@
             android:layout_marginRight="5dp"
             android:background="@drawable/bgtxt"
             android:paddingLeft="5dp"
+            android:paddingTop="5dp"
             android:text="@string/Registration"
-            android:textColor="@android:color/black"
+            android:textColor="@color/orange"
             android:textColorLink="@android:color/black"
             android:textSize="13sp" />
 

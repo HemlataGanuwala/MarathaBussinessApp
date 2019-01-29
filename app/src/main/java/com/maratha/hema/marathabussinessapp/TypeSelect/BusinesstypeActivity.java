@@ -1,4 +1,4 @@
-package com.maratha.hema.marathabussinessapp;
+package com.maratha.hema.marathabussinessapp.TypeSelect;
 
 import android.Manifest;
 import android.content.Intent;
@@ -12,9 +12,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.maratha.hema.marathabussinessapp.TypeSelect.BusinesspersondetailsActivity;
+import com.maratha.hema.marathabussinessapp.GlobalClass;
+import com.maratha.hema.marathabussinessapp.R;
+import com.maratha.hema.marathabussinessapp.Model.RegListPlanet;
+import com.maratha.hema.marathabussinessapp.Adapter.RegistrationAdapter;
+import com.maratha.hema.marathabussinessapp.ServiceHandler;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -25,15 +30,16 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BusinesstypeActivity extends AppCompatActivity implements RegistrationAdapter.OnItemClickListner{
+public class BusinesstypeActivity extends AppCompatActivity implements RegistrationAdapter.OnItemClickListner {
 
     private static final int PERMISSIONS_REQUEST_CALL_PHONE = 10;
     RecyclerView recyclerView;
     RegistrationAdapter adapter;
     List<RegListPlanet> mPlanetlist = new ArrayList<RegListPlanet>();
     ServiceHandler shh;
-    String path,contact,location,custid,type;
+    String path,contact,nameofbusiness,custid,type,pname;
     String uri;
+    TextView textViewtype;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +51,7 @@ public class BusinesstypeActivity extends AppCompatActivity implements Registrat
 
         recyclerView = (RecyclerView)findViewById(R.id.rcbusinesstype);
         recyclerView.setLayoutManager(new LinearLayoutManager(BusinesstypeActivity.this));
+        textViewtype = (TextView)findViewById(R.id.tvbusitypenameofbusi);
 
         Display();
 
@@ -56,6 +63,7 @@ public class BusinesstypeActivity extends AppCompatActivity implements Registrat
         Intent intent = new Intent(BusinesstypeActivity.this,BusinesspersondetailsActivity.class);
         RegListPlanet planet = mPlanetlist.get(position);
         intent.putExtra("a1",planet.getCustomerId());
+        intent.putExtra("a2",planet.getPersonName());
         startActivity(intent);
     }
 
@@ -82,6 +90,7 @@ public class BusinesstypeActivity extends AppCompatActivity implements Registrat
         {
             type = (String)bundle.get("a1");
         }
+        textViewtype.setText(type);
     }
 
     private void showContacts() {
@@ -146,9 +155,10 @@ public class BusinesstypeActivity extends AppCompatActivity implements Registrat
                         JSONObject a1 = classArray.getJSONObject(i);
                         custid = a1.getString("Bid");
                         contact = a1.getString("Contact");
-                        location = a1.getString("Address");
+                        nameofbusiness = a1.getString("NameofBusiness");
+                        pname = a1.getString("Name");
 
-                        RegListPlanet planet1 = new RegListPlanet(custid,contact,location);
+                        RegListPlanet planet1 = new RegListPlanet(custid,contact,nameofbusiness,pname);
                         mPlanetlist.add(planet1);
                     }
 
