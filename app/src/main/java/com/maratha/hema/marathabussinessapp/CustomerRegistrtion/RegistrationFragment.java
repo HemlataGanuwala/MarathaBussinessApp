@@ -1,4 +1,4 @@
-package com.maratha.hema.marathabussinessapp;
+package com.maratha.hema.marathabussinessapp.CustomerRegistrtion;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -26,6 +26,10 @@ import android.widget.Toast;
 
 
 import com.maratha.hema.marathabussinessapp.CustomerRegistrtion.DocumentPhotoUploadActivity;
+import com.maratha.hema.marathabussinessapp.GlobalClass;
+import com.maratha.hema.marathabussinessapp.R;
+import com.maratha.hema.marathabussinessapp.ServiceHandler;
+import com.maratha.hema.marathabussinessapp.SpinnerTypePlanet;
 import com.maratha.hema.marathabussinessapp.TypeSelect.ImageShowActivity;
 
 import org.apache.http.NameValuePair;
@@ -51,7 +55,7 @@ public class RegistrationFragment extends Fragment {
     View view;
     EditText editTextname,editTextnamebusiness,editTextaddress,editTextcontact,editTextemail,editTextwebsite,editTextabout,editTextservice,editTextbestprice;
     Spinner spinnertypebusiness;
-    Button buttonregister,buttonnext,buttonaddtype;
+    Button buttonnext;
     ProgressDialog progress;
     ServiceHandler shh;
     int Status =1;
@@ -85,10 +89,7 @@ public class RegistrationFragment extends Fragment {
         editTextservice = (EditText)view.findViewById(R.id.etservice);
         editTextbestprice = (EditText)view.findViewById(R.id.etbestprice);
         spinnertypebusiness = (Spinner)view.findViewById(R.id.spiOccupation);
-        buttonregister = (Button)view.findViewById(R.id.btnregister);
         buttonnext = (Button)view.findViewById(R.id.btnRegUpload);
-
-        buttonregister.setVisibility(View.GONE);
 
         new GetOccupationData().execute();
 
@@ -127,12 +128,15 @@ public class RegistrationFragment extends Fragment {
             }
         });
 
-        buttonregister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                InsertData();
-            }
-        });
+
+
+
+//        buttonregister.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                InsertData();
+//            }
+//        });
 
         return view;
     }
@@ -164,7 +168,7 @@ public class RegistrationFragment extends Fragment {
             imagedoc = (String) bundle.get("P1");
             imagereceipt = (String)bundle.get("P2");
 
-            buttonregister.setVisibility(View.VISIBLE);
+//            buttonregister.setVisibility(View.VISIBLE);
         }
     }
 

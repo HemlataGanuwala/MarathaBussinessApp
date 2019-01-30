@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.maratha.hema.marathabussinessapp.EditDetailsActivity;
 import com.maratha.hema.marathabussinessapp.GlobalClass;
 import com.maratha.hema.marathabussinessapp.R;
 import com.maratha.hema.marathabussinessapp.Model.RegApprovalListPlanet;

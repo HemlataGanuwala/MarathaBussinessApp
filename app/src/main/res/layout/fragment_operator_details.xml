@@ -30,12 +30,13 @@
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_weight=".15"
                 android:gravity="center"
+                android:paddingLeft="40dp"
                 android:text="DETAILS"
                 android:textColor="@color/orange"
                 android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_weight=".20"/>
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/btnoperatoredit"
@@ -51,7 +52,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:orientation="vertical">
 
             <TextView
@@ -82,15 +83,17 @@
                 android:id="@+id/tvappOccupation"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:layout_marginTop="3dp"
                 android:layout_weight=".60"
                 android:background="@drawable/transboarder"
+                android:paddingLeft="5dp"
                 android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/etappaddress"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="3dp"
                 android:background="@drawable/transboarder"
                 android:ems="10"
                 android:hint="Enter your address"
@@ -103,14 +106,14 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginTop="3dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/etappcontactno"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_marginTop="10dp"
                     android:layout_marginRight="2dp"
                     android:layout_weight="1"
                     android:background="@drawable/transboarder"
@@ -125,8 +128,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginLeft="2dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_weight=".75"
+                    android:layout_weight=".70"
                     android:background="@drawable/transboarder"
                     android:ems="10"
                     android:hint="Enter Email Address"
@@ -139,7 +141,7 @@
                 android:id="@+id/etappwebsite"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="3dp"
                 android:background="@drawable/transboarder"
                 android:ems="10"
                 android:hint="Enter a website"
@@ -217,7 +219,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 

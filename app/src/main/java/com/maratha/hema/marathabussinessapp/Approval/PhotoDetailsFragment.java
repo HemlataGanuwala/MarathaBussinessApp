@@ -143,7 +143,8 @@ public class PhotoDetailsFragment extends Fragment {
 
                 String filename=p1.substring(p1.lastIndexOf("/")+1);
 
-                URL url = new URL("http://192.168.0.117:8014/UploadedFiles/" + filename);
+               // URL url = new URL("http://192.168.0.117:8014/UploadedFiles/" + filename);
+                URL url = new URL("http://marathabusiness.skyvisioncables.com/UploadedFiles/" + filename);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setDoInput(true);
                 connection.connect();
@@ -170,7 +171,8 @@ public class PhotoDetailsFragment extends Fragment {
 
                 String filename=p2.substring(p2.lastIndexOf("/")+1);
 
-                URL url = new URL("http://192.168.0.117:8014/UploadedFiles/" + filename);
+//                URL url = new URL("http://192.168.0.117:8014/UploadedFiles/" + filename);
+                URL url = new URL("http://marathabusiness.skyvisioncables.com/UploadedFiles/" + filename);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setDoInput(true);
                 connection.connect();

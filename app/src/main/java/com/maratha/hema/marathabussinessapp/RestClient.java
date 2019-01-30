@@ -14,7 +14,9 @@ import retrofit.converter.GsonConverter;
  */
 public class RestClient {
     private UploadService uploadService;
-    private String URL ="http://192.168.0.117:8014/api/";
+//    private String URL ="http://192.168.0.117:8014/api/";
+
+    private String URL="http://marathabusiness.skyvisioncables.com/api/";
 
     public RestClient(){
             Gson localGson = new GsonBuilder().create();
@@ -26,8 +28,8 @@ public class RestClient {
             {
                 public void intercept(RequestFacade requestFacade)
                 {
-                    if (URL.contains("192.168.0.117")) {
-                        requestFacade.addHeader("Host", "localhost");
+                    if (URL.contains("http://marathabusiness.skyvisioncables.com")) {
+                        requestFacade.addHeader("Host", "marathabusiness.skyvisioncables.com");
                     }
                 }
             })

@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.maratha.hema.marathabussinessapp.Approval.ApprovalDetailsActivity;
+import com.maratha.hema.marathabussinessapp.EditDetailsActivity;
 import com.maratha.hema.marathabussinessapp.GlobalClass;
 import com.maratha.hema.marathabussinessapp.R;
 import com.maratha.hema.marathabussinessapp.ServiceHandler;
@@ -42,7 +43,7 @@ public class OperatorDetailsFragment extends Fragment {
     ImageView imageViewdocument;
     ServiceHandler shh;
     String path, pname, businame,btype, address, contact,email, website, cabout,service, bestprice, custid,document, doc;
-    Button buttonreject,buttonapproval,buttononhold;
+    Button buttonreject,buttonapproval,buttononhold, buttonedit;
     int Status = 1;
 
 
@@ -52,7 +53,7 @@ public class OperatorDetailsFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_operator_details, container, false);
@@ -73,6 +74,7 @@ public class OperatorDetailsFragment extends Fragment {
 //        imageViewdocument = (ImageView)view.findViewById(R.id.imgappdocument);
         buttonreject = (Button)view.findViewById(R.id.btndetailreject);
         buttonapproval = (Button)view.findViewById(R.id.btndetailapproval);
+        buttonedit=(Button)view.findViewById(R.id.btnoperatoredit);
 
         buttonapproval.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +89,18 @@ public class OperatorDetailsFragment extends Fragment {
                 new ApprovalReject().execute();
             }
         });
+
+        buttonedit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getActivity(), EditDetailsActivity.class);
+                intent.putExtra("Id",custid);
+                intent.putExtra("Name",pname);
+                intent.putExtra("Mobileno",contact);
+                startActivity(intent);
+            }
+        });
+
 
 
         Display();
@@ -135,15 +149,15 @@ public class OperatorDetailsFragment extends Fragment {
                         JSONObject a1 = classArray.getJSONObject(i);
                         custid = a1.getString("Bid");
                         pname = a1.getString("Name");
-                        businame = a1.getString("NameofBusiness");
-                        btype = a1.getString("TypeofBusiness");
-                        email = a1.getString("Email");
+//                        businame = a1.getString("NameofBusiness");
+//                        btype = a1.getString("TypeofBusiness");
+//                        email = a1.getString("Email");
                         contact = a1.getString("Contact");
-                        website = a1.getString("Website");
-                        cabout = a1.getString("AboutBusiness");
-                        service = a1.getString("Services");
-                        bestprice = a1.getString("BestPrice");
-                        address = a1.getString("Address");
+//                        website = a1.getString("Website");
+//                        cabout = a1.getString("AboutBusiness");
+//                        service = a1.getString("Services");
+//                        bestprice = a1.getString("BestPrice");
+//                        address = a1.getString("Address");
                     }
 
 

@@ -16,6 +16,7 @@
         android:roundIcon="@mipmap/logomaratha"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".EditDetailsActivity"></activity>
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,15 +30,16 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".RegActivity" />
+        <activity android:name=".CustomerRegistrtion.RegActivity" />
         <activity android:name=".TypeSelect.InfoActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".BusinesstypeActivity" />
+        <activity android:name=".TypeSelect.BusinesstypeActivity" />
         <activity android:name=".TypeSelect.BusinesspersondetailsActivity" />
         <activity android:name=".Approval.ApprovalActivity" />
         <activity android:name=".TypeSelect.ImageShowActivity" />
         <activity android:name=".Approval.ApprovalDetailsActivity" />
-        <activity android:name=".AccountDetailsActivity" />
+        <activity android:name=".CustomerRegistrtion.AccountDetailsActivity" />
+        <activity android:name=".CustomerRegistrtion.DocumentPhotoUploadActivity" />
     </application>
 
 </manifest>

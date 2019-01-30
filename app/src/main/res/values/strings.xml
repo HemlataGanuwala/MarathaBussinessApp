@@ -4,25 +4,22 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="About"><b>"MARATHA VYAVSAYIK UDYOJAK"</b>  Business Application is
-         Specialized for MARATHA Community to grow
-        \n Enterprenuer Relationship
+         Specialized for MARATHA Community to grow Enterprenuer Relationship
     </string>
     <string name="Benifites">
-
-        * Grow your Business through maximum Customer Viewers\n
+        * Grow your Business through maximum Customer Viewers
+        \n
         \n
         * Easy finding your Business details
     </string>
     <string name="Registration">
-
-        * This app valid for "MARATHA" Community Business \n Enterprenuer\n
+        * This app valid for "MARATHA" Community Business \nEnterprenuer\n
         \n
-        * Registration of Business Enterprenuer Required Cast \n Certificate/Birth Certificate/ Leaving Certificate\n
+        * Registration of Business Enterprenuer Required Cast Certificate/Birth Certificate/Leaving Certificate\n
         \n
-        * Registration cost of Business Enterprenuer is Rs 200
-        \n per year\n
+        * Registration cost of Business Enterprenuer is Rs 200 per year\n
         \n
-        * Transfer your Registration amount to following Account \n Details
+        * Transfer your Registration amount to following Account Details
 
     </string>
 </resources>

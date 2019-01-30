@@ -25,7 +25,7 @@ public class InfoActivity extends AppCompatActivity {
         buttonnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(InfoActivity.this,RegActivity.class);
+                Intent intent = new Intent(InfoActivity.this, RegActivity.class);
                 startActivity(intent);
             }
         });
@@ -33,9 +33,8 @@ public class InfoActivity extends AppCompatActivity {
         buttondetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intent = new Intent(InfoActivity.this, AccountDetailsActivity.class);
-                startActivity(intent);
+                Intent i = new Intent(InfoActivity.this, AccountDetailsActivity.class);
+                startActivity(i);
             }
         });
     }

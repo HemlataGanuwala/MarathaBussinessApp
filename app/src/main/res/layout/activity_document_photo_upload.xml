@@ -49,25 +49,44 @@
                 android:layout_weight=".65"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/imgupload3"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bgtxt" />
+                    android:orientation="vertical"
+                    android:layout_weight="1">
 
-                <ImageView
-                    android:id="@+id/imgupload4"
+                    <ImageView
+                        android:id="@+id/imgupload3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bgtxt" />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bgtxt" />
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+
+                    <ImageView
+                        android:id="@+id/imgupload4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bgtxt" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -107,25 +126,45 @@
                 android:layout_weight=".65"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/imgupload1"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight=".20"
-                    android:background="@drawable/bgtxt" />
+                    android:orientation="vertical"
+                    android:layout_weight="1">
 
-                <ImageView
-                    android:id="@+id/imgupload2"
+
+                    <ImageView
+                        android:id="@+id/imgupload1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight=".20"
+                        android:background="@drawable/bgtxt" />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight=".20"
-                    android:background="@drawable/bgtxt" />
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+
+                    <ImageView
+                        android:id="@+id/imgupload2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight=".20"
+                        android:background="@drawable/bgtxt" />
+
+                </LinearLayout>
 
             </LinearLayout>
 

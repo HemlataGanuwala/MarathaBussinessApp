@@ -5,10 +5,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.maratha.hema.marathabussinessapp.CustomerRegistrtion.AccountFragment;
-
 import com.maratha.hema.marathabussinessapp.R;
-import com.maratha.hema.marathabussinessapp.RegistrationFragment;
 import com.maratha.hema.marathabussinessapp.ViewPagerAdapter;
 
 public class RegActivity extends AppCompatActivity {
