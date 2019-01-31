@@ -141,18 +141,62 @@ public class BusiPersonDetailFragment extends Fragment {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
-            textViewname.setText(pname);
-            textViewbusiname.setText(businame);
-            textViewcontact.setText(contact);
-            textViewaddress.setText(address);
-            textViewemail.setText(email);
-            textViewwebsite.setText(website);
-            textViewabout.setText(cabout);
-            textViewservice.setText(service);
-            textViewbestprice.setText(bestprice);
+            if(!pname.equals("null")) {
+                textViewname.setText(pname);
+            }else{
+                textViewname.setText("");
+            }
 
+            if (!businame.equals("null")) {
+                textViewbusiname.setText(businame);
+            }else{
+                textViewbusiname.setText("");
+            }
+
+            if (!contact.equals("null")) {
+                textViewcontact.setText(contact);
+            }else{
+                textViewcontact.setText(" ");
+            }
+
+            if (!address.equals("null")) {
+                textViewaddress.setText(address);
+            }else{
+                textViewaddress.setText(" ");
+            }
+
+            if (!email.equals("null")) {
+                textViewemail.setText(email);
+            }else {
+                textViewemail.setText(" ");
+            }
+
+            if (!website.equals("null")) {
+                textViewwebsite.setText(website);
+            }else{
+                textViewwebsite.setText(" ");
+            }
+
+            if (!cabout.equals("null")) {
+                textViewabout.setText(cabout);
+            }else {
+                textViewabout.setText(" ");
+            }
+
+            if(!service.equals("null")) {
+                textViewservice.setText(service);
+            }else {
+                textViewservice.setText(" ");
+            }
+
+            if (!bestprice.equals("null")) {
+                textViewbestprice.setText(bestprice);
+            }else{
+                textViewbestprice.setText(" ");
+            }
 
         }
+
     }
 
 }

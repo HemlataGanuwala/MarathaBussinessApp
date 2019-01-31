@@ -27,15 +27,15 @@ import java.util.List;
 
 public class EditDetailsActivity extends AppCompatActivity {
 
-    EditText editTextname, editTextbusinessname, editTextaddress, editTextcontactno, editTextemail, editTextwebsite, editTextaboutbuisness, editTextservice, editTextprice;
+    EditText editTextname, editTextbusinessname, editTextaddress, editTextcontactno, editTextemail, editTextwebsite, editTextaboutbuisness, editTextservice, editTextprice, editTextbtype;
     Button buttonupdate;
-    Spinner spinnerbuisnesstype;
+//    Spinner spinnerbuisnesstype;
     String name, businessname, address, phoneno, email, website, aboutebuisness, service, price, typeofbuisness, path, id;
     ProgressDialog progress;
     ServiceHandler shh;
     int Status =1;
-    SpinnerTypePlanet spinnerTypePlanet;
-    ArrayList<SpinnerTypePlanet> typePlanetslist = new ArrayList<SpinnerTypePlanet>();
+//    SpinnerTypePlanet spinnerTypePlanet;
+//    ArrayList<SpinnerTypePlanet> typePlanetslist = new ArrayList<SpinnerTypePlanet>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,13 +54,14 @@ public class EditDetailsActivity extends AppCompatActivity {
         editTextwebsite=(EditText)findViewById(R.id.etwebsite);
         editTextprice=(EditText)findViewById(R.id.etbestprice);
         editTextservice=(EditText)findViewById(R.id.etservice);
+        editTextbtype=(EditText)findViewById(R.id.etbtype);
 
         buttonupdate=(Button)findViewById(R.id.btnupdate);
-        spinnerbuisnesstype=(Spinner)findViewById(R.id.spiOccupation);
+//        spinnerbuisnesstype=(Spinner)findViewById(R.id.spiOccupation);
 
         Display();
         new FetchList1().execute();
-        new GetOccupationData().execute();
+//        new GetOccupationData().execute();
 
         buttonupdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +80,8 @@ public class EditDetailsActivity extends AppCompatActivity {
             id = (String)bundle.get("Id");
             phoneno = (String)bundle.get("Mobileno");
             name = (String)bundle.get("Name");
+            typeofbuisness = (String)bundle.get("BusinessType");
+
         }
     }
 
@@ -93,7 +96,8 @@ public class EditDetailsActivity extends AppCompatActivity {
         website=editTextwebsite.getText().toString();
         service=editTextservice.getText().toString();
         price=editTextprice.getText().toString();
-        typeofbuisness=spinnerbuisnesstype.getSelectedItem().toString();
+        typeofbuisness=editTextbtype.getText().toString();
+//        typeofbuisness=spinnerbuisnesstype.getSelectedItem().toString();
 
         new GetUpdateData().execute();
 
@@ -105,6 +109,13 @@ public class EditDetailsActivity extends AppCompatActivity {
         protected void onPreExecute()
         {
             super.onPreExecute();
+
+            progress = new ProgressDialog(EditDetailsActivity.this);
+            progress.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            progress.setIndeterminate(true);
+            progress.setCancelable(false);
+            progress.show();
+            progress.setContentView(R.layout.progress_dialog);
         }
         @Override
         protected String doInBackground(String... params)
@@ -129,6 +140,8 @@ public class EditDetailsActivity extends AppCompatActivity {
 
                         name = a1.getString("Name");
                         phoneno = a1.getString("Contact");
+                        typeofbuisness = a1.getString("TypeofBusiness");
+
 
                     }
 
@@ -146,10 +159,10 @@ public class EditDetailsActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-
+            progress.dismiss();
             editTextname.setText(name);
             editTextcontactno.setText(phoneno);
-
+            editTextbtype.setText(typeofbuisness);
 
         }
     }
@@ -160,12 +173,6 @@ public class EditDetailsActivity extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
 
-            progress = new ProgressDialog(EditDetailsActivity.this);
-            progress.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-            progress.setIndeterminate(true);
-            progress.setCancelable(false);
-            progress.show();
-            progress.setContentView(R.layout.progress_dialog);
         }
 
 
@@ -240,88 +247,89 @@ public class EditDetailsActivity extends AppCompatActivity {
             editTextaboutbuisness.setText("");
             editTextservice.setText("");
             editTextprice.setText("");
+            editTextbtype.setText("");
         }
 
     }
 
-    public class GetOccupationData extends AsyncTask<String, String, String> {
-
-        @Override
-        protected void onPreExecute() {
-
-            super.onPreExecute();
-            progress = new ProgressDialog(EditDetailsActivity.this);
-            progress.getWindow().setBackgroundDrawable(new
-                    ColorDrawable(android.graphics.Color.TRANSPARENT));
-            progress.setIndeterminate(true);
-            progress.setCancelable(false);
-            progress.show();
-            progress.setContentView(R.layout.progress_dialog);
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-
-
-            shh = new ServiceHandler();
-
-            String url = path + "RegistrationApi/GetOccupationList";
-
-            Log.d("Url: ", "> " + url);
-
-            try {
-                // Making a request to url and getting response
-
-                List<NameValuePair> para = new ArrayList<>();
-
-
-                String jsonStr = shh.makeServiceCall(url, ServiceHandler.GET, null);
-                if (jsonStr != null) {
-                    JSONObject jObj = new JSONObject(jsonStr);
-                    JSONArray jsonArray=jObj.getJSONArray("Response");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject a1 = jsonArray.getJSONObject(i);
-
-                        spinnerTypePlanet = new SpinnerTypePlanet(a1.getString("Occupation"));
-                        typePlanetslist.add(spinnerTypePlanet);
-
-                    }
-
-
-                } else {
-                    Toast.makeText(EditDetailsActivity.this, "Data not Found", Toast.LENGTH_LONG).show();
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                Log.e("ServiceHandler", "Json Error ");
-            }
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            super.onPostExecute(result);
-            progress.dismiss();
-            List<String> typelables = new ArrayList<String>();
-
-            for (int i = 0; i < typePlanetslist.size(); i++) {
-                typelables.add(typePlanetslist.get(i).getOccupationname());
-            }
-
-            // Creating adapter for spinner
-            ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(EditDetailsActivity.this,
-                    android.R.layout.simple_spinner_item, typelables);
-
-            // Drop down layout style - list view with radio button
-            spinnerAdapter
-                    .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-            // attaching data adapter to spinner
-            spinnerbuisnesstype.setAdapter(spinnerAdapter);
-
-        }
-    }
+//    public class GetOccupationData extends AsyncTask<String, String, String> {
+//
+//        @Override
+//        protected void onPreExecute() {
+//
+//            super.onPreExecute();
+//            progress = new ProgressDialog(EditDetailsActivity.this);
+//            progress.getWindow().setBackgroundDrawable(new
+//                    ColorDrawable(android.graphics.Color.TRANSPARENT));
+//            progress.setIndeterminate(true);
+//            progress.setCancelable(false);
+//            progress.show();
+//            progress.setContentView(R.layout.progress_dialog);
+//        }
+//
+//        @Override
+//        protected String doInBackground(String... params) {
+//
+//
+//            shh = new ServiceHandler();
+//
+//            String url = path + "RegistrationApi/GetOccupationList";
+//
+//            Log.d("Url: ", "> " + url);
+//
+//            try {
+//                // Making a request to url and getting response
+//
+//                List<NameValuePair> para = new ArrayList<>();
+//
+//
+//                String jsonStr = shh.makeServiceCall(url, ServiceHandler.GET, null);
+//                if (jsonStr != null) {
+//                    JSONObject jObj = new JSONObject(jsonStr);
+//                    JSONArray jsonArray=jObj.getJSONArray("Response");
+//                    for (int i = 0; i < jsonArray.length(); i++) {
+//                        JSONObject a1 = jsonArray.getJSONObject(i);
+//
+//                        spinnerTypePlanet = new SpinnerTypePlanet(a1.getString("Occupation"));
+//                        typePlanetslist.add(spinnerTypePlanet);
+//
+//                    }
+//
+//
+//                } else {
+//                    Toast.makeText(EditDetailsActivity.this, "Data not Found", Toast.LENGTH_LONG).show();
+//                }
+//
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//                Log.e("ServiceHandler", "Json Error ");
+//            }
+//
+//            return null;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String result) {
+//
+//            super.onPostExecute(result);
+//            progress.dismiss();
+//            List<String> typelables = new ArrayList<String>();
+//
+//            for (int i = 0; i < typePlanetslist.size(); i++) {
+//                typelables.add(typePlanetslist.get(i).getOccupationname());
+//            }
+//
+//            // Creating adapter for spinner
+//            ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(EditDetailsActivity.this,
+//                    android.R.layout.simple_spinner_item, typelables);
+//
+//            // Drop down layout style - list view with radio button
+//            spinnerAdapter
+//                    .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//
+//            // attaching data adapter to spinner
+//            spinnerbuisnesstype.setAdapter(spinnerAdapter);
+//
+//        }
+//    }
 }

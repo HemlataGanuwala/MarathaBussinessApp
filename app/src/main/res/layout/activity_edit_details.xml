@@ -58,7 +58,8 @@
                         android:ems="10"
                         android:hint="Enter your name"
                         android:inputType="textPersonName"
-                        android:paddingLeft="5dp" />
+                        android:paddingLeft="5dp"
+                        android:textColor="#000" />
 
                     <EditText
                         android:id="@+id/etnameofbusiness"
@@ -69,7 +70,8 @@
                         android:ems="10"
                         android:hint="Name of Business"
                         android:inputType="textCapCharacters"
-                        android:paddingLeft="5dp" />
+                        android:paddingLeft="5dp"
+                        android:textColor="#000" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -78,14 +80,17 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <Spinner
-                            android:id="@+id/spiOccupation"
+                        <EditText
+                            android:id="@+id/etbtype"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:layout_marginTop="3dp"
-                            android:layout_weight=".60"
-                            android:background="@drawable/transboarder"
-                            android:scrollbarSize="18dp" />
+                            android:background="@drawable/bg_text"
+                            android:ems="10"
+                            android:hint="Buisness Type"
+                            android:inputType="textPersonName"
+                            android:paddingLeft="5dp"
+                            android:textColor="#000" />
 
                     </LinearLayout>
 
@@ -98,7 +103,8 @@
                         android:ems="10"
                         android:hint="Enter your address"
                         android:inputType="textPersonName|textCapWords"
-                        android:paddingLeft="5dp" />
+                        android:paddingLeft="5dp"
+                        android:textColor="#000" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -116,7 +122,8 @@
                             android:ems="10"
                             android:hint="Enter Contact no"
                             android:inputType="phone"
-                            android:paddingLeft="5dp" />
+                            android:paddingLeft="5dp"
+                            android:textColor="#000" />
 
                         <EditText
                             android:id="@+id/etemail"
@@ -128,7 +135,8 @@
                             android:ems="10"
                             android:hint="Enter Email Address"
                             android:inputType="textEmailAddress"
-                            android:paddingLeft="5dp" />
+                            android:paddingLeft="5dp"
+                            android:textColor="#000" />
                     </LinearLayout>
 
                     <EditText
@@ -140,7 +148,8 @@
                         android:ems="10"
                         android:hint="Enter a website"
                         android:inputType="textWebEditText"
-                        android:paddingLeft="5dp" />
+                        android:paddingLeft="5dp"
+                        android:textColor="#000" />
 
                     <EditText
                         android:id="@+id/etabout"
@@ -151,7 +160,8 @@
                         android:ems="10"
                         android:hint="Enter About Your Business"
                         android:inputType="textPersonName"
-                        android:paddingLeft="5dp" />
+                        android:paddingLeft="5dp"
+                        android:textColor="#000" />
 
                     <EditText
                         android:id="@+id/etservice"
@@ -162,7 +172,8 @@
                         android:ems="10"
                         android:hint="Enter Services"
                         android:inputType="textPersonName"
-                        android:paddingLeft="5dp" />
+                        android:paddingLeft="5dp"
+                        android:textColor="#000" />
 
                     <EditText
                         android:id="@+id/etbestprice"
@@ -173,7 +184,8 @@
                         android:ems="10"
                         android:hint="Enter Best Price"
                         android:inputType="number"
-                        android:paddingLeft="5dp" />
+                        android:paddingLeft="5dp"
+                        android:textColor="#000" />
 
                 </LinearLayout>
 

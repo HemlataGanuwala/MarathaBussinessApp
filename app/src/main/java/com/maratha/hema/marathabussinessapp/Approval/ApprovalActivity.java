@@ -1,8 +1,10 @@
 package com.maratha.hema.marathabussinessapp.Approval;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -42,6 +44,7 @@ public class ApprovalActivity extends AppCompatActivity implements RegistrationA
     Button buttonapproval,buttonreject;
     int Status = 1;
     boolean chk;
+    ProgressDialog progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +87,16 @@ public class ApprovalActivity extends AppCompatActivity implements RegistrationA
             }
         });
 
+        buttonreject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                new ApprovalReject().execute();
+
+            }
+
+        });
+
         new FetchList1().execute();
     }
 
@@ -94,8 +107,6 @@ public class ApprovalActivity extends AppCompatActivity implements RegistrationA
         intent.putExtra("a1",planet.getCustomerId());
         intent.putExtra("a2",planet.getPersonName());
         startActivity(intent);
-
-
     }
 
     @Override
@@ -158,6 +169,7 @@ public class ApprovalActivity extends AppCompatActivity implements RegistrationA
         {
             super.onPreExecute();
         }
+
         @Override
         protected String doInBackground(String... params)
         {
@@ -168,9 +180,9 @@ public class ApprovalActivity extends AppCompatActivity implements RegistrationA
 
             try {
                 List<NameValuePair> params2 = new ArrayList<>();
-//                params2.add(new BasicNameValuePair("Bid", custid));
+                params2.add(new BasicNameValuePair("Status", "0"));
 
-                String jsonStr = shh.makeServiceCall(url, ServiceHandler.GET, params2);
+                String jsonStr = shh.makeServiceCall(url, ServiceHandler.POST, params2);
 
                 if (jsonStr != null)
                 {
@@ -217,10 +229,17 @@ public class ApprovalActivity extends AppCompatActivity implements RegistrationA
     class ApprovalUpdate extends AsyncTask<String, String, String>
     {
 
-        protected void onPreExecute()
-        {
+        @Override
+        protected void onPreExecute() {
             super.onPreExecute();
+            progress=new ProgressDialog(ApprovalActivity.this);
+            progress.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            progress.setIndeterminate(true);
+            progress.setCancelable(false);
+            progress.show();
+            progress.setContentView(R.layout.progress_dialog);
         }
+
         @Override
         protected String doInBackground(String... params)
         {
@@ -257,6 +276,7 @@ public class ApprovalActivity extends AppCompatActivity implements RegistrationA
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            progress.dismiss();
 
             if (Status == 1)
             {
@@ -274,10 +294,17 @@ public class ApprovalActivity extends AppCompatActivity implements RegistrationA
     class ApprovalReject extends AsyncTask<String, String, String>
     {
 
-        protected void onPreExecute()
-        {
+        @Override
+        protected void onPreExecute() {
             super.onPreExecute();
+            progress = new ProgressDialog(ApprovalActivity.this);
+            progress.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            progress.setIndeterminate(true);
+            progress.setCancelable(false);
+            progress.show();
+            progress.setContentView(R.layout.progress_dialog);
         }
+
         @Override
         protected String doInBackground(String... params)
         {
@@ -314,6 +341,7 @@ public class ApprovalActivity extends AppCompatActivity implements RegistrationA
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            progress.dismiss();
 
             if (Status == 1)
             {

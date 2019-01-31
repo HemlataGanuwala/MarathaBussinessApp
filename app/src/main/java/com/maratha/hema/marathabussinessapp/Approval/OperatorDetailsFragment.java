@@ -1,9 +1,11 @@
 package com.maratha.hema.marathabussinessapp.Approval;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -45,6 +47,7 @@ public class OperatorDetailsFragment extends Fragment {
     String path, pname, businame,btype, address, contact,email, website, cabout,service, bestprice, custid,document, doc;
     Button buttonreject,buttonapproval,buttononhold, buttonedit;
     int Status = 1;
+    ProgressDialog progressDialog;
 
 
     public OperatorDetailsFragment() {
@@ -97,6 +100,7 @@ public class OperatorDetailsFragment extends Fragment {
                 intent.putExtra("Id",custid);
                 intent.putExtra("Name",pname);
                 intent.putExtra("Mobileno",contact);
+                intent.putExtra("BusinessType", btype);
                 startActivity(intent);
             }
         });
@@ -149,15 +153,15 @@ public class OperatorDetailsFragment extends Fragment {
                         JSONObject a1 = classArray.getJSONObject(i);
                         custid = a1.getString("Bid");
                         pname = a1.getString("Name");
-//                        businame = a1.getString("NameofBusiness");
-//                        btype = a1.getString("TypeofBusiness");
-//                        email = a1.getString("Email");
+                        businame = a1.getString("NameofBusiness");
+                        btype = a1.getString("TypeofBusiness");
+                        email = a1.getString("Email");
                         contact = a1.getString("Contact");
-//                        website = a1.getString("Website");
-//                        cabout = a1.getString("AboutBusiness");
-//                        service = a1.getString("Services");
-//                        bestprice = a1.getString("BestPrice");
-//                        address = a1.getString("Address");
+                        website = a1.getString("Website");
+                        cabout = a1.getString("AboutBusiness");
+                        service = a1.getString("Services");
+                        bestprice = a1.getString("BestPrice");
+                        address = a1.getString("Address");
                     }
 
 
@@ -177,16 +181,78 @@ public class OperatorDetailsFragment extends Fragment {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
-            textViewname.setText(pname);
-            textViewbusiname.setText(businame);
-            textViewocctype.setText(btype);
-            textViewcontact.setText(contact);
-            textViewaddress.setText(address);
-            textViewemail.setText(email);
-            textViewwebsite.setText(website);
-            textViewabout.setText(cabout);
-            textViewservice.setText(service);
-            textViewbestprice.setText(bestprice);
+            String str = null;
+
+            if(!pname.equals("null")) {
+                textViewname.setText(pname);
+            }
+            else {
+                textViewname.setText(" ");
+            }
+
+            if(!businame.equals("null")) {
+                textViewbusiname.setText(businame);
+            }
+            else {
+                textViewbusiname.setText(" ");
+            }
+
+            if (!btype.equals("null")) {
+                textViewocctype.setText(btype);
+            }
+            else {
+                textViewocctype.setText(" ");
+            }
+
+            if(!contact.equals("null")) {
+                textViewcontact.setText(contact);
+            }
+            else {
+                textViewcontact.setText(" ");
+            }
+
+            if (!address.equals("null")) {
+                textViewaddress.setText(address);
+            }
+            else{
+                textViewaddress.setText(" ");
+            }
+
+            if (!email.equals("null")) {
+                textViewemail.setText(email);
+            }
+            else {
+                textViewemail.setText(" ");
+            }
+
+            if (!website.equals("null")) {
+                textViewwebsite.setText(website);
+            }
+            else {
+                textViewwebsite.setText(" ");
+            }
+
+            if (!cabout.equals("null")) {
+                textViewabout.setText(cabout);
+            }
+            else {
+                textViewabout.setText(" ");
+            }
+
+            if (!service.equals("null"))
+            {
+                textViewservice.setText(service);
+            }
+            else {
+                textViewservice.setText(" ");
+            }
+
+            if (!bestprice.equals("null")) {
+                textViewbestprice.setText(bestprice);
+            }
+            else {
+                textViewbestprice.setText(" ");
+            }
 //            byte[] decodeString = Base64.decode(document, Base64.DEFAULT);
 //            Bitmap decodebitmap = BitmapFactory.decodeByteArray(decodeString, 0, decodeString.length);
 //            imageViewdocument.setImageBitmap(decodebitmap);
@@ -200,6 +266,12 @@ public class OperatorDetailsFragment extends Fragment {
         protected void onPreExecute()
         {
             super.onPreExecute();
+            progressDialog= new ProgressDialog(getActivity());
+            progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            progressDialog.setIndeterminate(true);
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+            progressDialog.setContentView(R.layout.progress_dialog);
         }
         @Override
         protected String doInBackground(String... params)
@@ -237,6 +309,7 @@ public class OperatorDetailsFragment extends Fragment {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            progressDialog.dismiss();
 
             if (Status == 1)
             {
@@ -257,6 +330,12 @@ public class OperatorDetailsFragment extends Fragment {
         protected void onPreExecute()
         {
             super.onPreExecute();
+            progressDialog= new ProgressDialog(getActivity());
+            progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            progressDialog.setIndeterminate(true);
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+            progressDialog.setContentView(R.layout.progress_dialog);
         }
         @Override
         protected String doInBackground(String... params)
@@ -294,6 +373,7 @@ public class OperatorDetailsFragment extends Fragment {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            progressDialog.dismiss();
 
             if (Status == 1)
             {

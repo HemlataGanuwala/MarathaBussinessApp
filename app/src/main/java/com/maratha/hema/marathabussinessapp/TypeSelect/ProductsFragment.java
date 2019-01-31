@@ -145,7 +145,7 @@ public class ProductsFragment extends Fragment {
 
                 String filename=p3.substring(p3.lastIndexOf("/")+1);
 
-                URL url = new URL("http://192.168.0.117:8014/UploadedFiles/" + filename);
+                URL url = new URL("http://marathabusiness.skyvisioncables.com/UploadedFiles/" + filename);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setDoInput(true);
                 connection.connect();
@@ -172,7 +172,7 @@ public class ProductsFragment extends Fragment {
 
                 String filename=p4.substring(p4.lastIndexOf("/")+1);
 
-                URL url = new URL("http://192.168.0.117:8014/UploadedFiles/" + filename);
+                URL url = new URL("http://marathabusiness.skyvisioncables.com/UploadedFiles/" + filename);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setDoInput(true);
                 connection.connect();

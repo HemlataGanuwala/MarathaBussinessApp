@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="50dp"
     android:background="@android:drawable/editbox_background"
     android:orientation="horizontal">
 
@@ -10,7 +10,7 @@
         android:id="@+id/tvlistlocation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight=".60"
+        android:layout_weight=".55"
         android:gravity="center|start" />
 
     <TextView
@@ -23,7 +23,8 @@
     <ImageButton
         android:id="@+id/imglistcall"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
         android:layout_weight="1"
         android:background="@android:color/transparent"
         app:srcCompat="@android:drawable/sym_action_call" />

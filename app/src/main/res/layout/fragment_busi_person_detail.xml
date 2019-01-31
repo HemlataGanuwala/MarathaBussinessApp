@@ -45,14 +45,14 @@
                         android:id="@+id/etname"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:layout_marginTop="10dp"
                         android:background="@drawable/transboarder"
                         android:ems="10"
                         android:gravity="center|left"
-                        android:textSize="17sp"
                         android:hint="Enter your name"
                         android:inputType="textPersonName"
-                        android:paddingLeft="5dp" />
+                        android:paddingLeft="5dp"
+                        android:textColor="#000"
+                        android:textSize="17sp" />
 
                     <TextView
                         android:id="@+id/etnameofbusiness"
@@ -62,10 +62,11 @@
                         android:background="@drawable/transboarder"
                         android:ems="10"
                         android:gravity="center|left"
-                        android:textSize="17sp"
                         android:hint="Name of Business"
                         android:inputType="textPersonName"
-                        android:paddingLeft="5dp" />
+                        android:paddingLeft="5dp"
+                        android:textColor="#000"
+                        android:textSize="17sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -80,66 +81,69 @@
                         android:id="@+id/etaddress"
                         android:layout_width="match_parent"
                         android:layout_height="70dp"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="3dp"
                         android:background="@drawable/transboarder"
                         android:ems="10"
                         android:gravity="center|left"
-                        android:textSize="17sp"
+                        android:hint="Enter your address"
                         android:inputType="textMultiLine"
                         android:lines="5"
                         android:maxLength="180"
                         android:maxLines="5"
-                        android:hint="Enter your address"
-                        android:paddingLeft="5dp" />
+                        android:paddingLeft="5dp"
+                        android:textColor="#000"
+                        android:textSize="17sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
                         android:orientation="horizontal">
 
                         <TextView
                             android:id="@+id/etcontactno"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
-                            android:layout_marginTop="10dp"
                             android:layout_marginRight="2dp"
                             android:layout_weight="1"
                             android:background="@drawable/transboarder"
                             android:ems="10"
                             android:gravity="center|left"
-                            android:textSize="17sp"
                             android:hint="Enter Contact no"
                             android:inputType="phone"
-                            android:paddingLeft="5dp" />
+                            android:paddingLeft="5dp"
+                            android:textColor="#000"
+                            android:textSize="17sp" />
 
                         <TextView
                             android:id="@+id/etemail"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:layout_marginLeft="2dp"
-                            android:layout_marginTop="10dp"
                             android:layout_weight=".75"
                             android:background="@drawable/transboarder"
                             android:ems="10"
                             android:gravity="center|left"
-                            android:textSize="17sp"
                             android:hint="Enter Email Address"
                             android:inputType="textEmailAddress"
-                            android:paddingLeft="5dp" />
+                            android:paddingLeft="5dp"
+                            android:textColor="#000"
+                            android:textSize="17sp" />
                     </LinearLayout>
 
                     <TextView
                         android:id="@+id/etwebsite"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="3dp"
                         android:background="@drawable/transboarder"
                         android:ems="10"
                         android:gravity="center|left"
-                        android:textSize="17sp"
                         android:hint="Enter a website"
                         android:inputType="textWebEditText"
-                        android:paddingLeft="5dp" />
+                        android:paddingLeft="5dp"
+                        android:textColor="#000"
+                        android:textSize="17sp" />
 
                     <TextView
                         android:id="@+id/etabout"
@@ -149,10 +153,11 @@
                         android:background="@drawable/transboarder"
                         android:ems="10"
                         android:gravity="center|left"
-                        android:textSize="17sp"
                         android:hint="Enter About Your Business"
                         android:inputType="textPersonName"
-                        android:paddingLeft="5dp" />
+                        android:paddingLeft="5dp"
+                        android:textColor="#000"
+                        android:textSize="17sp" />
 
                     <TextView
                         android:id="@+id/etservice"
@@ -162,10 +167,11 @@
                         android:background="@drawable/transboarder"
                         android:ems="10"
                         android:gravity="center|left"
-                        android:textSize="17sp"
                         android:hint="Enter Services"
                         android:inputType="textPersonName"
-                        android:paddingLeft="5dp" />
+                        android:paddingLeft="5dp"
+                        android:textColor="#000"
+                        android:textSize="17sp" />
 
                     <TextView
                         android:id="@+id/etbestprice"
@@ -175,10 +181,11 @@
                         android:background="@drawable/transboarder"
                         android:ems="10"
                         android:gravity="center|left"
-                        android:textSize="17sp"
                         android:hint="Enter Best Price"
                         android:inputType="number"
-                        android:paddingLeft="5dp" />
+                        android:paddingLeft="5dp"
+                        android:textColor="#000"
+                        android:textSize="17sp" />
 
                 </LinearLayout>
 
