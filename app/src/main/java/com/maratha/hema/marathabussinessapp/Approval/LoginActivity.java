@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.maratha.hema.marathabussinessapp.GlobalClass;
 import com.maratha.hema.marathabussinessapp.R;
+import com.maratha.hema.marathabussinessapp.SelectActivity;
 import com.maratha.hema.marathabussinessapp.ServiceHandler;
 
 public class LoginActivity extends AppCompatActivity {
@@ -233,7 +234,7 @@ public class LoginActivity extends AppCompatActivity {
             if(tpin.equals(lpin))
             {
                 Toast.makeText(LoginActivity.this,"Login Successfully",Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(LoginActivity.this,ApprovalActivity.class);
+                Intent intent = new Intent(LoginActivity.this, SelectActivity.class);
                 startActivity(intent);
             }
         }

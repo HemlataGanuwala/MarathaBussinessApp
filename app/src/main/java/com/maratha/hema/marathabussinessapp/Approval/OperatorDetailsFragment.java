@@ -77,7 +77,7 @@ public class OperatorDetailsFragment extends Fragment {
 //        imageViewdocument = (ImageView)view.findViewById(R.id.imgappdocument);
         buttonreject = (Button)view.findViewById(R.id.btndetailreject);
         buttonapproval = (Button)view.findViewById(R.id.btndetailapproval);
-        buttonedit=(Button)view.findViewById(R.id.btnoperatoredit);
+//        buttonedit=(Button)view.findViewById(R.id.btnoperatoredit);
 
         buttonapproval.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,17 +93,17 @@ public class OperatorDetailsFragment extends Fragment {
             }
         });
 
-        buttonedit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent= new Intent(getActivity(), EditDetailsActivity.class);
-                intent.putExtra("Id",custid);
-                intent.putExtra("Name",pname);
-                intent.putExtra("Mobileno",contact);
-                intent.putExtra("BusinessType", btype);
-                startActivity(intent);
-            }
-        });
+//        buttonedit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent= new Intent(getActivity(), EditDetailsActivity.class);
+//                intent.putExtra("Id",custid);
+//                intent.putExtra("Name",pname);
+//                intent.putExtra("Mobileno",contact);
+//                intent.putExtra("BusinessType", btype);
+//                startActivity(intent);
+//            }
+//        });
 
 
 

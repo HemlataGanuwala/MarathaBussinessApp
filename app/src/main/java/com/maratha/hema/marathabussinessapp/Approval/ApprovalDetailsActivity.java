@@ -27,8 +27,6 @@ public class ApprovalDetailsActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 
-
-
     }
 
 
