@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -30,9 +31,14 @@ import com.squareup.picasso.Picasso;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,19 +48,16 @@ import retrofit.mime.TypedFile;
 
 public class PhotoEditActivity extends AppCompatActivity {
 
-    Button buttonuploaddoc,buttonuploadreceipt,buttonuploadprod1,buttonuploadprod2,btnUpload, buttondelete;
-    ImageView imageViewdoc,imageViewreceipt,imageViewproduct1,imageViewproduct2;
+    Button buttonuploaddoc, buttonuploadreceipt, buttonuploadprod1, buttonuploadprod2, btnUpload;
+    ImageView imageViewdoc, imageViewreceipt, imageViewproduct1, imageViewproduct2;
     Uri targetUri;
-    Bitmap bitmap;
-    TextView textViewupload;
     private RestClient restClient;
-    private String imagePath="";
     private File savedFileDestination;
     String img = "";
     ProgressDialog mProgress;
     ProgressDialog progress;
     ServiceHandler shh;
-    String path,custname,doc,resp,pro1,pro2,nmbusi,address,contact,typebusi,email,website,pay,about,service,id;
+    String path, name, doc, resp, pro1, pro2,p1,p2,p3,p4, document, receipt, product1, product2;
     int Status = 1;
 
     @Override
@@ -62,40 +65,55 @@ public class PhotoEditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_edit);
 
-        final GlobalClass globalVariable = (GlobalClass)getApplicationContext();
+        final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
         path = globalVariable.getconstr();
 
         restClient = new RestClient();
-        buttonuploaddoc = (Button)findViewById(R.id.btnuploaddoc);
-        buttonuploadreceipt = (Button)findViewById(R.id.btnuploadreceipt);
-        buttonuploadprod1 = (Button)findViewById(R.id.btnuploadproduct1);
-        buttonuploadprod2 = (Button)findViewById(R.id.btnuploadproduct2);
-        buttondelete=(Button)findViewById(R.id.btndelete);
-        imageViewdoc = (ImageView) findViewById(R.id.imgupload1);
-        imageViewreceipt = (ImageView)findViewById(R.id.imgupload2);
-        imageViewproduct1 = (ImageView)findViewById(R.id.imgupload3);
-        imageViewproduct2 = (ImageView)findViewById(R.id.imgupload4);
-        textViewupload = (TextView) findViewById(R.id.tvupload);
-        btnUpload = (Button)findViewById(R.id.btnregupload);
 
-        Display();
+        buttonuploaddoc = (Button) findViewById(R.id.btnuploaddoc);
+        buttonuploadreceipt = (Button) findViewById(R.id.btnuploadreceipt);
+        buttonuploadprod1 = (Button) findViewById(R.id.btnuploadproduct1);
+        buttonuploadprod2 = (Button) findViewById(R.id.btnuploadproduct2);
+        imageViewdoc = (ImageView) findViewById(R.id.imgupload1);
+        imageViewreceipt = (ImageView) findViewById(R.id.imgupload2);
+        imageViewproduct1 = (ImageView) findViewById(R.id.imgupload3);
+        imageViewproduct2 = (ImageView) findViewById(R.id.imgupload4);
+        btnUpload = (Button) findViewById(R.id.btnimgupdate);
 
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (doc != null && resp != null)
-                {
-                    new GetInsertData().execute();
+                if (doc==null){
+                    doc=p1;
+                }else {
+                    new GetUpdateImgData().execute();
                 }
-                else
-                {
-                    Toast.makeText(PhotoEditActivity.this, "First Attach Document and Receipt", Toast.LENGTH_LONG).show();
+
+                if (resp==null) {
+                    resp=p2;
+                }else {
+                    new GetUpdateImgData().execute();
                 }
+
+                if (pro1==null){
+                    pro1=p3;
+                }else {
+                    new GetUpdateImgData().execute();
+                }
+
+                if (pro2==null){
+                    pro2=p4;
+                }else {
+                    new GetUpdateImgData().execute();
+                }
+
             }
-
-
         });
+
+        new FetchImageList().execute();
+        Display();
+
 
         buttonuploaddoc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,7 +124,8 @@ public class PhotoEditActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select picture"), 1000 );
+                startActivityForResult(Intent.createChooser(intent, "Select picture"), 1000);
+
             }
         });
 
@@ -119,7 +138,8 @@ public class PhotoEditActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select picture"), 1000 );
+                startActivityForResult(Intent.createChooser(intent, "Select picture"), 1000);
+
             }
         });
 
@@ -132,7 +152,8 @@ public class PhotoEditActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select picture"), 1000 );
+                startActivityForResult(Intent.createChooser(intent, "Select picture"), 1000);
+
             }
         });
 
@@ -148,23 +169,31 @@ public class PhotoEditActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select picture"), 1000 );
-            }
-        });
+                startActivityForResult(Intent.createChooser(intent, "Select picture"), 1000);
 
-        buttondelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                new DeleteData().execute();
             }
         });
 
 
     }
 
+    public void Display() {
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if (bundle != null) {
 
-    private void initiateProgressDialog(){
+            name=bundle.getString("CustName");
+
+//            doc=bundle.getString("Image1");
+//            resp=bundle.getString("Image2");
+//            pro1=bundle.getString("Image3");
+//            pro2=bundle.getString("Image4");
+        }
+
+    }
+
+
+    private void initiateProgressDialog() {
         mProgress = new ProgressDialog(PhotoEditActivity.this);
         mProgress.setMessage("Uploading files...");
         mProgress.setCancelable(true);
@@ -175,9 +204,9 @@ public class PhotoEditActivity extends AppCompatActivity {
         mProgress.show();
     }
 
-    private void uploadImage(final ImageView imgPhoto){
-        if (savedFileDestination==null) {
-            Toast.makeText(PhotoEditActivity.this,"Please take photo first", Toast.LENGTH_LONG).show();
+    private void uploadImage(final ImageView imgPhoto) {
+        if (savedFileDestination == null) {
+            Toast.makeText(PhotoEditActivity.this, "Please take photo first", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -193,14 +222,14 @@ public class PhotoEditActivity extends AppCompatActivity {
                         .into(imgPhoto);
 
 
-                Toast.makeText(PhotoEditActivity.this,"Upload successfully",Toast.LENGTH_LONG).show();
+//                Toast.makeText(PhotoEditActivity.this, "Upload successfully", Toast.LENGTH_LONG).show();
                 Log.e("Upload", "success");
             }
 
             @Override
             public void onFailure(RetrofitError error) {
                 mProgress.dismiss();
-                Toast.makeText(PhotoEditActivity.this,"Upload failed",Toast.LENGTH_LONG).show();
+//                Toast.makeText(PhotoEditActivity.this, "Upload failed", Toast.LENGTH_LONG).show();
                 Log.e("Upload", error.getMessage().toString());
             }
         });
@@ -208,7 +237,7 @@ public class PhotoEditActivity extends AppCompatActivity {
 
     }
 
-    public  boolean isStoragePermissionGranted() {
+    public boolean isStoragePermissionGranted() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     == PackageManager.PERMISSION_GRANTED) {
@@ -220,8 +249,7 @@ public class PhotoEditActivity extends AppCompatActivity {
                 ActivityCompat.requestPermissions(PhotoEditActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
                 return false;
             }
-        }
-        else { //permission is automatically granted on sdk<23 upon installation
+        } else { //permission is automatically granted on sdk<23 upon installation
             // Log.v(TAG,"Permission is granted");
             return true;
         }
@@ -261,7 +289,7 @@ public class PhotoEditActivity extends AppCompatActivity {
                         filePath = extenal[1].getAbsolutePath();
                         filePath = filePath.substring(0, filePath.indexOf("Android")) + split[1];
                     }
-                }else{
+                } else {
                     filePath = "/storage/" + type + "/" + split[1];
                 }
                 return filePath;
@@ -363,7 +391,6 @@ public class PhotoEditActivity extends AppCompatActivity {
     }
 
 
-
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -372,16 +399,16 @@ public class PhotoEditActivity extends AppCompatActivity {
 
         switch (img) {
             case "btnimg1":
-                if (resultCode == RESULT_OK){
+                if (resultCode == RESULT_OK) {
                     targetUri = data.getData();
                     //textViewupload.setText(targetUri.toString());
-                    savedFileDestination = new File(getRealPathFromURI(this,targetUri));
+                    savedFileDestination = new File(getRealPathFromURI(this, targetUri));
 
                     uploadImage(imageViewdoc);
                     doc = savedFileDestination.toString();
 
-                    //new GetInsertData().execute();
 
+                    //new GetInsertData().execute();
 
 
                     //do in background
@@ -395,18 +422,17 @@ public class PhotoEditActivity extends AppCompatActivity {
                 }
                 break;
             case "btnimg2":
-                if (resultCode == RESULT_OK){
+                if (resultCode == RESULT_OK) {
                     targetUri = data.getData();
                     //textViewupload.setText(targetUri.toString());
-                    savedFileDestination = new File(getRealPathFromURI(this,targetUri));
+                    savedFileDestination = new File(getRealPathFromURI(this, targetUri));
 
                     uploadImage(imageViewreceipt);
 
                     resp = savedFileDestination.toString();
 
+
                     // new GetInsertData().execute();
-
-
 
 
 //                    try {
@@ -418,14 +444,15 @@ public class PhotoEditActivity extends AppCompatActivity {
                 }
                 break;
             case "btnimg3":
-                if (resultCode == RESULT_OK){
+                if (resultCode == RESULT_OK) {
                     targetUri = data.getData();
                     //textViewupload.setText(targetUri.toString());
-                    savedFileDestination = new File(getRealPathFromURI(this,targetUri));
+                    savedFileDestination = new File(getRealPathFromURI(this, targetUri));
 
                     uploadImage(imageViewproduct1);
-
                     pro1 = savedFileDestination.toString();
+
+
 
                     //new GetInsertData().execute();
 
@@ -438,14 +465,15 @@ public class PhotoEditActivity extends AppCompatActivity {
                 }
                 break;
             case "btnimg4":
-                if (resultCode == RESULT_OK){
+                if (resultCode == RESULT_OK) {
                     targetUri = data.getData();
                     //textViewupload.setText(targetUri.toString());
-                    savedFileDestination = new File(getRealPathFromURI(this,targetUri));
+                    savedFileDestination = new File(getRealPathFromURI(this, targetUri));
 
                     uploadImage(imageViewproduct2);
 
                     pro2 = savedFileDestination.toString();
+
 
                     // new GetInsertData().execute();
 
@@ -462,28 +490,184 @@ public class PhotoEditActivity extends AppCompatActivity {
 
     }
 
-    public void Display()
-    {
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        if (bundle !=null)
-        {
-            id = (String)bundle.get("Custid");
-            custname = (String) bundle.get("CustName");
-            nmbusi = (String) bundle.get("NmBusiness");
-            address = (String) bundle.get("Address");
-            contact = (String) bundle.get("Contact");
-            email = (String) bundle.get("Email");
-            website = (String) bundle.get("Website");
-            about = (String) bundle.get("About");
-            service = (String) bundle.get("Service");
-            pay = (String) bundle.get("Bestprice");
-            typebusi = (String) bundle.get("TypeBusiness");
+
+    public class FetchImageList extends AsyncTask<String, String, String> {
+
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            progress = new ProgressDialog(PhotoEditActivity.this);
+            progress.getWindow().setBackgroundDrawable(new
+                    ColorDrawable(android.graphics.Color.TRANSPARENT));
+            progress.setIndeterminate(true);
+            progress.setCancelable(false);
+            progress.show();
+            progress.setContentView(R.layout.progress_dialog);
         }
 
+        @Override
+        protected String doInBackground(String... params) {
+            shh = new ServiceHandler();
+            String url = path + "RegistrationApi/ProductImageIdWise";
+
+            Log.d("Url: ", "> " + url);
+
+            try {
+                List<NameValuePair> params2 = new ArrayList<>();
+                params2.add(new BasicNameValuePair("Name", name));
+
+                String jsonStr = shh.makeServiceCall(url, ServiceHandler.POST, params2);
+
+                if (jsonStr != null) {
+                    JSONObject c1 = new JSONObject(jsonStr);
+                    JSONArray classArray = c1.getJSONArray("Response");
+                    for (int i = 0; i < classArray.length(); i++) {
+                        JSONObject a1 = classArray.getJSONObject(i);
+                        p1 = a1.getString("Product1");
+                        p2 = a1.getString("Product2");
+                        p3 = a1.getString("Product3");
+                        p4 = a1.getString("Product4");
+                    }
+
+
+                } else {
+                    Toast.makeText(PhotoEditActivity.this, "Data Not Available", Toast.LENGTH_LONG).show();
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            progress.dismiss();
+
+            new SendHttpRequestTask().execute();
+
+            new SendHttpRequestTask1().execute();
+
+            new SendHttpRequestTask2().execute();
+
+            new SendHttpRequestTask3().execute();
+        }
     }
 
-    public class GetInsertData extends AsyncTask<String, String, String> {
+    private class SendHttpRequestTask extends AsyncTask<String, Void, Bitmap> {
+        @Override
+        protected Bitmap doInBackground(String... params) {
+            try {
+
+                String filename=p1.substring(p1.lastIndexOf("/")+1);
+
+                // URL url = new URL("http://192.168.0.117:8014/UploadedFiles/" + filename);
+                URL url = new URL("http://marathabusiness.skyvisioncables.com/UploadedFiles/" + filename);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setDoInput(true);
+                connection.connect();
+                InputStream input = connection.getInputStream();
+                Bitmap myBitmap = BitmapFactory.decodeStream(input);
+                return myBitmap;
+            }catch (Exception e){
+                //Log.d(TAG,e.getMessage());
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap result) {
+            //ImageView imageView = (ImageView) findViewById(imgPhoto);
+            imageViewdoc.setImageBitmap(result);
+        }
+    }
+
+    private class SendHttpRequestTask1 extends AsyncTask<String, Void, Bitmap> {
+        @Override
+        protected Bitmap doInBackground(String... params) {
+            try {
+
+                String filename=p2.substring(p2.lastIndexOf("/")+1);
+
+//                URL url = new URL("http://192.168.0.117:8014/UploadedFiles/" + filename);
+                URL url = new URL("http://marathabusiness.skyvisioncables.com/UploadedFiles/" + filename);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setDoInput(true);
+                connection.connect();
+                InputStream input = connection.getInputStream();
+                Bitmap myBitmap = BitmapFactory.decodeStream(input);
+                return myBitmap;
+            }catch (Exception e){
+                //Log.d(TAG,e.getMessage());
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap result) {
+            //ImageView imageView = (ImageView) findViewById(imgPhoto);
+            imageViewreceipt.setImageBitmap(result);
+        }
+    }
+
+    private class SendHttpRequestTask2 extends AsyncTask<String, Void, Bitmap> {
+        @Override
+        protected Bitmap doInBackground(String... params) {
+            try {
+
+                String filename=p3.substring(p3.lastIndexOf("/")+1);
+
+//                URL url = new URL("http://192.168.0.117:8014/UploadedFiles/" + filename);
+                URL url = new URL("http://marathabusiness.skyvisioncables.com/UploadedFiles/" + filename);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setDoInput(true);
+                connection.connect();
+                InputStream input = connection.getInputStream();
+                Bitmap myBitmap = BitmapFactory.decodeStream(input);
+                return myBitmap;
+            }catch (Exception e){
+                //Log.d(TAG,e.getMessage());
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap result) {
+            //ImageView imageView = (ImageView) findViewById(imgPhoto);
+            imageViewproduct1.setImageBitmap(result);
+        }
+    }
+
+    private class SendHttpRequestTask3 extends AsyncTask<String, Void, Bitmap> {
+        @Override
+        protected Bitmap doInBackground(String... params) {
+            try {
+
+                String filename=p4.substring(p4.lastIndexOf("/")+1);
+
+//                URL url = new URL("http://192.168.0.117:8014/UploadedFiles/" + filename);
+                URL url = new URL("http://marathabusiness.skyvisioncables.com/UploadedFiles/" + filename);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setDoInput(true);
+                connection.connect();
+                InputStream input = connection.getInputStream();
+                Bitmap myBitmap = BitmapFactory.decodeStream(input);
+                return myBitmap;
+            }catch (Exception e){
+                //Log.d(TAG,e.getMessage());
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap result) {
+            //ImageView imageView = (ImageView) findViewById(imgPhoto);
+            imageViewproduct2.setImageBitmap(result);
+        }
+    }
+
+    public class GetUpdateImgData extends AsyncTask<String, String, String> {
 
         @Override
         protected void onPreExecute() {
@@ -505,7 +689,7 @@ public class PhotoEditActivity extends AppCompatActivity {
 
             shh = new ServiceHandler();
 
-            String url = path + "RegistrationApi/ProductImage";
+            String url = path + "RegistrationApi/ImageUpdate";
 
             Log.d("Url: ", "> " + url);
 
@@ -514,14 +698,13 @@ public class PhotoEditActivity extends AppCompatActivity {
 
                 List<NameValuePair> para = new ArrayList<>();
                 // para.add(new BasicNameValuePair("CustBal", balance));
-//                para.add(new BasicNameValuePair("CustName", custname));
-                para.add(new BasicNameValuePair("Name", custname));
+//                para.add(new BasicNameValuePair("CustName", id));
+                para.add(new BasicNameValuePair("Name", name));
                 para.add(new BasicNameValuePair("Product1", doc));
                 para.add(new BasicNameValuePair("Product2", resp));
                 para.add(new BasicNameValuePair("Product3", pro1));
                 para.add(new BasicNameValuePair("Product4", pro2));
 
-
                 String jsonStr = shh.makeServiceCall(url, ServiceHandler.POST, para);
                 if (jsonStr != null) {
                     JSONObject jObj = new JSONObject(jsonStr);
@@ -549,97 +732,9 @@ public class PhotoEditActivity extends AppCompatActivity {
             progress.dismiss();
 
             if (Status == 1) {
-                new GetInsertRegData().execute();
-                        //Toast.makeText(DocumentPhotoUploadActivity.this, "Register succesfully", Toast.LENGTH_LONG).show();
-            }
-            else {
-                Toast.makeText(PhotoEditActivity.this, "Register Failed", Toast.LENGTH_LONG).show();
-            }
 
+                Toast.makeText(PhotoEditActivity.this, "Update succesfully", Toast.LENGTH_LONG).show();
 
-
-        }
-    }
-
-    public class GetInsertRegData extends AsyncTask<String, String, String> {
-
-        @Override
-        protected void onPreExecute() {
-
-            super.onPreExecute();
-
-            progress = new ProgressDialog(PhotoEditActivity.this);
-            progress.getWindow().setBackgroundDrawable(new
-                    ColorDrawable(android.graphics.Color.TRANSPARENT));
-            progress.setIndeterminate(true);
-            progress.setCancelable(false);
-            progress.show();
-            progress.setContentView(R.layout.progress_dialog);
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-
-
-            shh = new ServiceHandler();
-
-            String url = path + "RegistrationApi/BusinessManRegistration";
-
-            Log.d("Url: ", "> " + url);
-
-            try {
-                // Making a request to url and getting response
-
-                List<NameValuePair> para = new ArrayList<>();
-                // para.add(new BasicNameValuePair("CustBal", balance));
-//                para.add(new BasicNameValuePair("CustName", custname));
-                para.add(new BasicNameValuePair("Name", custname));
-                para.add(new BasicNameValuePair("NameofBusiness", nmbusi));
-                para.add(new BasicNameValuePair("TypeofBusiness", typebusi));
-                para.add(new BasicNameValuePair("Contact", contact));
-                para.add(new BasicNameValuePair("Address", address));
-                para.add(new BasicNameValuePair("Email", email));
-                para.add(new BasicNameValuePair("Website", website));
-                para.add(new BasicNameValuePair("AboutBusiness", about));
-                para.add(new BasicNameValuePair("Services", service));
-                para.add(new BasicNameValuePair("BestPrice", pay));
-//                para.add(new BasicNameValuePair("Document", image_str));
-                para.add(new BasicNameValuePair("Status", "0"));
-
-
-                String jsonStr = shh.makeServiceCall(url, ServiceHandler.POST, para);
-                if (jsonStr != null) {
-                    JSONObject jObj = new JSONObject(jsonStr);
-                    String msg = jObj.getString("Message");
-                    Status = Integer.parseInt(jObj.getString("Status"));
-
-
-                } else {
-                    Toast.makeText(PhotoEditActivity.this, "Data not Found", Toast.LENGTH_LONG).show();
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                Log.e("ServiceHandler", "Json Error ");
-            }
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            super.onPostExecute(result);
-
-            progress.dismiss();
-
-            if (Status == 1) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(PhotoEditActivity.this, "Update succesfully", Toast.LENGTH_LONG).show();
-                    }
-                });
 
             } else {
                 Toast.makeText(PhotoEditActivity.this, "Update Failed", Toast.LENGTH_LONG).show();
@@ -648,58 +743,6 @@ public class PhotoEditActivity extends AppCompatActivity {
         }
     }
 
-    public class DeleteData extends AsyncTask<String, String, String>
-    {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
 
-        @Override
-        protected String doInBackground(String... strings) {
-
-            shh = new ServiceHandler();
-
-            String url = path + "RegistrationApi/DeleteRecord";
-
-            Log.d("Url: ", "> " + url);
-
-            try {
-                // Making a request to url and getting response
-
-                List<NameValuePair> para = new ArrayList<>();
-
-                para.add(new BasicNameValuePair("Bid", id));
-
-                String jsonStr = shh.makeServiceCall(url, ServiceHandler.POST, para);
-
-                if (jsonStr != null) {
-                    JSONObject jObj = new JSONObject(jsonStr);
-                    String msg = jObj.getString("Message");
-                    Status = Integer.parseInt(jObj.getString("Status"));
-
-                } else {
-                    Toast.makeText(PhotoEditActivity.this, "Data not Found", Toast.LENGTH_LONG).show();
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                Log.e("ServiceHandler", "Json Error ");
-            }
-
-            return null;
-        }
-
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            if (Status==1){
-                Toast.makeText(PhotoEditActivity.this, "Record Deleted ", Toast.LENGTH_LONG).show();
-            }else {
-                Toast.makeText(PhotoEditActivity.this, "Record Not Deleted", Toast.LENGTH_LONG).show();
-            }
-        }
-    }
 
 }

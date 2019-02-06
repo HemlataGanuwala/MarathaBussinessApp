@@ -193,7 +193,7 @@
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
                         android:background="@drawable/btnlogin"
-                        android:text="Upload"
+                        android:text="Next"
                         android:layout_weight="1"/>
 
                 </LinearLayout>

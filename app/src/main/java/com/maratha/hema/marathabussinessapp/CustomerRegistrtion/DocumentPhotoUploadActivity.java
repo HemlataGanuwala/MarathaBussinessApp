@@ -27,6 +27,7 @@ import android.widget.Toast;
 
 import com.maratha.hema.marathabussinessapp.CancelableCallback;
 import com.maratha.hema.marathabussinessapp.GlobalClass;
+import com.maratha.hema.marathabussinessapp.PhotoEditActivity;
 import com.maratha.hema.marathabussinessapp.R;
 import com.maratha.hema.marathabussinessapp.RestClient;
 import com.maratha.hema.marathabussinessapp.ServiceHandler;
@@ -58,7 +59,7 @@ public class DocumentPhotoUploadActivity extends AppCompatActivity {
     ProgressDialog mProgress;
     ProgressDialog progress;
     ServiceHandler shh;
-    String path,custname,doc,resp,pro1,pro2,nmbusi,address,contact,typebusi,email,website,pay,about,service;
+    String path,custname,doc,resp,pro1,pro2,nmbusi,address,contact,typebusi,email,website,pay,about,service, id;
     int Status = 1;
 
     @Override
@@ -508,7 +509,7 @@ public class DocumentPhotoUploadActivity extends AppCompatActivity {
 
                 List<NameValuePair> para = new ArrayList<>();
                 // para.add(new BasicNameValuePair("CustBal", balance));
-//                para.add(new BasicNameValuePair("CustName", custname));
+//                para.add(new BasicNameValuePair("CustName", id));
                 para.add(new BasicNameValuePair("Name", custname));
                 para.add(new BasicNameValuePair("Product1", doc));
                 para.add(new BasicNameValuePair("Product2", resp));
@@ -591,7 +592,7 @@ public class DocumentPhotoUploadActivity extends AppCompatActivity {
 
                 List<NameValuePair> para = new ArrayList<>();
                 // para.add(new BasicNameValuePair("CustBal", balance));
-//                para.add(new BasicNameValuePair("CustName", custname));
+//                para.add(new BasicNameValuePair("Bid", id));
                 para.add(new BasicNameValuePair("Name", custname));
                 para.add(new BasicNameValuePair("NameofBusiness", nmbusi));
                 para.add(new BasicNameValuePair("TypeofBusiness", typebusi));
@@ -637,6 +638,7 @@ public class DocumentPhotoUploadActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         Toast.makeText(DocumentPhotoUploadActivity.this, "Register succesfully", Toast.LENGTH_LONG).show();
+
                     }
                 });
 

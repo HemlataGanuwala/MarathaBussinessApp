@@ -1,5 +1,6 @@
 package com.maratha.hema.marathabussinessapp.Adapter;
 
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,12 +14,15 @@ import android.widget.TextView;
 import com.maratha.hema.marathabussinessapp.Model.EditDetailsPlanet;
 import com.maratha.hema.marathabussinessapp.R;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class EditDetailAdapter extends RecyclerView.Adapter<EditDetailAdapter.ListHolder> {
 
     List<EditDetailsPlanet> mPlanetlist;
     private OnItemClickListener mlistener;
+
 
     public interface OnItemClickListener{
         void onItemClick(int position);
@@ -34,6 +38,17 @@ public class EditDetailAdapter extends RecyclerView.Adapter<EditDetailAdapter.Li
    {
        this.mPlanetlist=mPlanetList;
    }
+
+    public void setData(List list) {
+        if (mPlanetlist != null) {
+            mPlanetlist.clear();
+            mPlanetlist.addAll(list);
+        }
+        else {
+            mPlanetlist = list;
+        }
+        notifyDataSetChanged();
+    }
 
     @NonNull
     @Override
@@ -95,4 +110,7 @@ public class EditDetailAdapter extends RecyclerView.Adapter<EditDetailAdapter.Li
 
         }
     }
+
+
+
 }

@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -43,6 +44,8 @@ public class EditActivity extends AppCompatActivity implements EditDetailAdapter
     int Status = 1;
     boolean chk;
     ProgressDialog progress;
+    SwipeRefreshLayout mSwipeRefreshLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +58,17 @@ public class EditActivity extends AppCompatActivity implements EditDetailAdapter
         recyclerView = (RecyclerView)findViewById(R.id.rcedit);
         recyclerView.setLayoutManager(new LinearLayoutManager(EditActivity.this));
 
-        mPlanetlist.clear();
+        mSwipeRefreshLayout=(SwipeRefreshLayout)findViewById(R.id.swipelayout);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
 
-       new FetchList1().execute();
+                mSwipeRefreshLayout.setRefreshing(true);
+
+            }
+        });
+
+        new FetchList1().execute();
     }
 
     @Override
