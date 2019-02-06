@@ -148,13 +148,16 @@
                     <TextView
                         android:id="@+id/etabout"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="70dp"
                         android:layout_marginTop="3dp"
                         android:background="@drawable/transboarder"
                         android:ems="10"
                         android:gravity="center|left"
                         android:hint="Enter About Your Business"
-                        android:inputType="textPersonName"
+                        android:inputType="textMultiLine"
+                        android:lines="5"
+                        android:maxLength="180"
+                        android:maxLines="5"
                         android:paddingLeft="5dp"
                         android:textColor="#000"
                         android:textSize="17sp" />
